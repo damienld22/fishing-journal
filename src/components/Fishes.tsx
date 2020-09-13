@@ -1,10 +1,9 @@
 import React from "react";
 
-const Home: React.FC = () => (
+const Fishes: React.FC = () => (
   <div style={styles.container}>
-    <p>Ce carnet a pour but de recenser mes parties de pêche. Lister les captures, les plans d'eau, les points importants, etc...</p>
+    <h1>Liste des prises</h1>
   </div>
-
 );
 
 const styles = {
@@ -15,4 +14,4 @@ const styles = {
   } as React.CSSProperties
 }
 
-export default Home;
+export default Fishes;

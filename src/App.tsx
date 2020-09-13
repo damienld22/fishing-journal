@@ -1,32 +1,32 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-const About = lazy(() => import('./components/About'));
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const Home = lazy(() => import('./components/Home'));
+const FishesPage = lazy(() => import('./components/Fishes'));
+const NavigationBar = lazy(() => import('./components/NavigationBar'));
 
 const App: React.FC = () => (
   <Router>
     <Suspense fallback={<div>Loading...</div>}>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
+      <NavigationBar />
       <Switch>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
+        <div style={styles.containerPages}>
+          <Route path="/fishes">
+            <FishesPage />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </div>
       </Switch>
     </Suspense>
 
   </Router>
 );
+
+const styles = {
+  containerPages: {
+    padding: 10
+  } as React.CSSProperties
+}
 
 export default App;
