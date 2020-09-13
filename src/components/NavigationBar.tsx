@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 
 
 const NavigationBar: React.FC = () => {
-  const [drawerIsOpen, setDrawerOpen] = useState(true);
+  const [drawerIsOpen, setDrawerOpen] = useState(false);
   const history = useHistory();
   
   return (
