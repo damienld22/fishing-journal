@@ -1,9 +1,10 @@
 import React from "react";
 
-const Fishes: React.FC = () => (
+const Home = () => (
   <div style={styles.container}>
-    <h1>Liste des prises</h1>
+    <p>Ce carnet a pour but de recenser mes parties de pêche. Lister les captures, les plans d'eau, les points importants, etc...</p>
   </div>
+
 );
 
 const styles = {
@@ -11,7 +12,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
-  } as React.CSSProperties
+  }
 }
 
-export default Fishes;
+export default Home;

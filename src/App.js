@@ -4,7 +4,7 @@ const Home = lazy(() => import('./components/Home'));
 const FishesPage = lazy(() => import('./components/Fishes'));
 const NavigationBar = lazy(() => import('./components/NavigationBar'));
 
-const App: React.FC = () => (
+const App = () => (
   <Router>
     <Suspense fallback={<div>Loading...</div>}>
       <NavigationBar />
@@ -26,7 +26,7 @@ const App: React.FC = () => (
 const styles = {
   containerPages: {
     padding: 10
-  } as React.CSSProperties
+  }
 }
 
 export default App;

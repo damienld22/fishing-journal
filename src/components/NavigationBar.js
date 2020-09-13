@@ -8,8 +8,8 @@ import NavigationItem from './NavigationItem';
 import { useHistory } from 'react-router-dom';
 
 
-const NavigationBar: React.FC = () => {
-  const [drawerIsOpen, setDrawerOpen] = useState(true);
+const NavigationBar = () => {
+  const [drawerIsOpen, setDrawerOpen] = useState(false);
   const history = useHistory();
   
   return (
@@ -48,11 +48,11 @@ const NavigationBar: React.FC = () => {
 const styles = {
   menuIcon: {
     color: 'white'
-  } as React.CSSProperties,
+  },
   drawer: {
     width: 240,
     flexShrink: 0
-  } as React.CSSProperties,
+  },
   drawerPaper: {
     width: 240,
   },
@@ -61,7 +61,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end'
-  } as React.CSSProperties
+  }
 }
 
 export default NavigationBar;
