@@ -14,8 +14,8 @@ const NavigationBar = () => {
 	return (
 		<AppBar position="static">
 			<Toolbar>
-				<IconButton style={styles.menuIcon} edge="start">
-					<MenuIcon onClick={() => setDrawerOpen(true)}/>
+				<IconButton style={styles.menuIcon} edge="start" onClick={() => setDrawerOpen(true)}>
+					<MenuIcon/>
 				</IconButton>
 				<p>Carnet de pêche</p>
 			</Toolbar>

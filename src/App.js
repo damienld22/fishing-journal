@@ -9,14 +9,16 @@ const App = () => (
 		<Suspense fallback={<div>Loading...</div>}>
 			<NavigationBar/>
 			<Switch>
-				<div style={styles.containerPages}>
-					<Route path="/fishes">
-						<FishesPage/>
-					</Route>
-					<Route path="/">
-						<Home/>
-					</Route>
-				</div>
+				<>
+					<div style={styles.containerPages}>
+						<Route path="/fishes">
+							<FishesPage/>
+						</Route>
+						<Route exact path="/">
+							<Home/>
+						</Route>
+					</div>
+				</>
 			</Switch>
 		</Suspense>
 
