@@ -9,3 +9,11 @@ export async function createFishCatch(fish) {
 		}
 	});
 }
+
+export async function getFishCatch() {
+	return axios.get(API_URL + '/fishes');
+}
+
+export async function deleteFishCatch(id) {
+	return axios.delete(API_URL + '/fishes/' + id);
+}
