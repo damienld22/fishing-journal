@@ -23,7 +23,7 @@ const SelectPicture = ({onSelectPicture, picture}) => {
 				</label>
 			</div>
 
-			<img alt="Current picture" src={picture} height={100}/>
+			<img alt="Current catch" src={picture} height={100}/>
 		</div>
 	);
 };
