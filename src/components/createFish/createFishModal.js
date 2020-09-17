@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {Dialog, DialogTitle, Button, CircularProgress} from '@material-ui/core';
+import {Dialog, DialogTitle, Button, CircularProgress, MobileStepper} from '@material-ui/core';
 import moment from 'moment';
 import SelectPicture from './selectPicture';
 import SelectWeight from './selectWeight';
@@ -52,9 +52,12 @@ const CreateFishModal = ({isOpen, setState}) => {
 
 			</div>
 
-			<div style={styles.buttons}>
-				{ step === 0 ? <Button onClick={() => setState(false)}>Annuler</Button> : <Button onClick={() => setStep(step - 1)}>Précédent</Button>}
-				{ step === 4 ? <Button onClick={onValidate}>Confirmer</Button> : <Button onClick={() => setStep(step + 1)}>Suivant</Button>}
+			<div style={styles.buttonsAndStepper}>
+				<MobileStepper variant="dots" steps={5} position="static" activeStep={step}/>
+				<div style={styles.buttons}>
+					{ step === 0 ? <Button style={styles.button} onClick={() => setState(false)}>Annuler</Button> : <Button style={styles.button} onClick={() => setStep(step - 1)}>Précédent</Button>}
+					{ step === 4 ? <Button style={styles.button} onClick={onValidate}>Confirmer</Button> : <Button style={styles.button} onClick={() => setStep(step + 1)}>Suivant</Button>}
+				</div>
 			</div>
 
 			{ displayProgress && <CircularProgress style={styles.progress}/>}
@@ -72,12 +75,20 @@ const styles = {
 		left: 'calc(50% - 20px)',
 		top: '50%'
 	},
+	buttonsAndStepper: {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center'
+	},
 	buttons: {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
 		paddingBottom: 10
+	},
+	button: {
+		width: '40vw'
 	}
 };
 
