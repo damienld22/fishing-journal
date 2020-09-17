@@ -37,6 +37,8 @@ const DisplayFishModal = ({isOpen, setState, fish}) => {
 				{fish.picture ? <img alt="catch" height={100} src={fish.picture}/> : <p>/</p>}
 				<p>{fish.weight ? `${fish.weight} kg` : '/'}</p>
 				<p>{fish.catchDate ? moment(fish.catchDate * 1000).format('lll') : '/'}</p>
+				{fish.bait && <p>{`Appat : ${fish.bait}`}</p>}
+				{fish.place && <p style={styles.place}>{fish.place}</p>}
 			</div>
 
 			<div style={styles.buttons}>
@@ -61,6 +63,9 @@ const styles = {
 		position: 'absolute',
 		left: 'calc(50% - 20px)',
 		top: '50%'
+	},
+	place: {
+		fontStyle: 'italic'
 	},
 	buttons: {
 		display: 'flex',
