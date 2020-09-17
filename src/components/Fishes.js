@@ -6,19 +6,27 @@ import DisplayFishModal from './DisplayFishModal';
 import {getFishCatch} from '../requests';
 import Snackbar from './Snackbar';
 import FishItem from './FishItem';
-import {List, Paper} from '@material-ui/core';
+import {List, Paper, CircularProgress} from '@material-ui/core';
 
 const Fishes = () => {
 	const [createFishModalIsOpen, setCreateFishModalIsOpen] = useState(false);
 	const [fishes, setFishes] = useState([]);
 	const [selectedFish, setSelectedFish] = useState(null);
+	const [displayProgress, setDisplayProgress] = useState(false);
 	const [messageSnackbar, setMessageSnackbar] = useState(null);
 
 	useEffect(() => {
 		if (!createFishModalIsOpen || !selectedFish) {
+			setDisplayProgress(true);
 			getFishCatch()
-				.then(({data}) => setFishes(data))
-				.catch(() => setMessageSnackbar('Erreur lors de la récupération des captures.'));
+				.then(({data}) => {
+					setFishes(data);
+					setDisplayProgress(false);
+				})
+				.catch(() => {
+					setMessageSnackbar('Erreur lors de la récupération des captures.');
+					setDisplayProgress(false);
+				});
 		}
 	}, [createFishModalIsOpen, selectedFish]);
 
@@ -40,6 +48,7 @@ const Fishes = () => {
 				<AddIcon/>
 			</IconButton>
 
+			{ displayProgress && <CircularProgress style={styles.progress}/>}
 			{selectedFish && <DisplayFishModal isOpen={Boolean(selectedFish)} setState={() => setSelectedFish(null)} fish={selectedFish}/>}
 			<CreateFishModal isOpen={createFishModalIsOpen} setState={setCreateFishModalIsOpen}/>
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
@@ -58,6 +67,11 @@ const styles = {
 		maxHeight: '75vh',
 		width: '100%',
 		overflow: 'auto'
+	},
+	progress: {
+		position: 'absolute',
+		left: 'calc(50% - 20px)',
+		top: '50%'
 	},
 	addButton: {
 		position: 'absolute',
