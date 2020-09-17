@@ -66,7 +66,8 @@ const styles = {
 		top: '50%'
 	},
 	place: {
-		fontStyle: 'italic'
+		fontStyle: 'italic',
+		textAlign: 'center'
 	},
 	buttons: {
 		display: 'flex',
