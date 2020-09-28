@@ -19,7 +19,7 @@ const SelectLocation = ({location, onSelectLocation}) => {
 		} else {
 			console.error('Gelocation not supported');
 		}
-	}, []);
+	}, [location, onSelectLocation]);
 
 	return (
 		<div style={styles.container}>
