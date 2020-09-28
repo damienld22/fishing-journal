@@ -17,3 +17,27 @@ export async function getFishCatch() {
 export async function deleteFishCatch(id) {
 	return axios.delete(API_URL + '/fishes/' + id);
 }
+
+export async function getLocations() {
+	return axios.get(API_URL + '/locations');
+}
+
+export async function createLocation(location) {
+	return axios.post(API_URL + '/locations', location, {
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+}
+
+export async function deleteLocation(id) {
+	return axios.delete(API_URL + '/locations/' + id);
+}
+
+export async function updateLocation(id, location) {
+	return axios.put(API_URL + '/locations/' + id, location, {
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+}

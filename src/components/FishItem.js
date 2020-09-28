@@ -21,6 +21,8 @@ const FishItem = ({fish, onClick}) => {
 const styles = {
 	card: {
 		width: '90%',
+		marginLeft: 'auto',
+		marginRight: 'auto',
 		marginTop: 10,
 		marginBottom: 10
 	},

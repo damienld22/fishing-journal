@@ -2,6 +2,7 @@ import React, {lazy, Suspense} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 const Home = lazy(() => import('./components/Home'));
 const FishesPage = lazy(() => import('./components/Fishes'));
+const LocationsPage = lazy(() => import('./components/locations/Locations'));
 const NavigationBar = lazy(() => import('./components/NavigationBar'));
 
 const App = () => (
@@ -13,6 +14,9 @@ const App = () => (
 					<div style={styles.containerPages}>
 						<Route path="/fishes">
 							<FishesPage/>
+						</Route>
+						<Route path="/locations">
+							<LocationsPage/>
 						</Route>
 						<Route exact path="/">
 							<Home/>
