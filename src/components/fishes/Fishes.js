@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import CreateFishModal from './createFish/createFishModal';
-import {getFishCatch} from '../requests';
-import Snackbar from './Snackbar';
+import CreateFishModal from './CreateFishModal';
+import {getFishCatch} from '../../requests';
+import Snackbar from '../Snackbar';
 import FishItem from './FishItem';
 import {List, Paper, CircularProgress} from '@material-ui/core';
-import EditFishModal from './createFish/editFishModal';
+import EditFishModal from './EditFishModal';
 
 const Fishes = () => {
 	const [createFishModalIsOpen, setCreateFishModalIsOpen] = useState(false);

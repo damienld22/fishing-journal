@@ -1,7 +1,7 @@
 import React, {lazy, Suspense} from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import 'mapbox-gl/dist/mapbox-gl.css';
-const FishesPage = lazy(() => import('./components/Fishes'));
+const FishesPage = lazy(() => import('./components/fishes/Fishes'));
 const LocationsPage = lazy(() => import('./components/locations/Locations'));
 const SessionsPage = lazy(() => import('./components/sessions/Sessions'));
 const NavigationBar = lazy(() => import('./components/NavigationBar'));

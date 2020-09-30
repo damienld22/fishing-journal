@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import CreateLocationModal from './createLocationModal';
-import EditLocationModal from './editLocationModal';
+import CreateLocationModal from './CreateLocationModal';
+import EditLocationModal from './EditLocationModal';
 import {getLocations} from '../../requests';
 import Snackbar from '../Snackbar';
 import LocationItem from './LocationItem';

@@ -8,14 +8,19 @@ const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,
 	C20.1,15.8,20.2,15.8,20.2,15.7z`;
 
 const SelectLocation = ({location, onSelectLocation}) => {
-	const [currentLocation, setCurrentLocation] = useState({latitude: 0, longitude: 0});
+	const [currentLocation, setCurrentLocation] = useState({
+		latitude: location?.latitude || 0,
+		longitude: location?.longitude || 0
+	});
 	const [zoom, setZoom] = useState(10);
 
 	useEffect(() => {
 		if (navigator.geolocation) {
 			if (!location || (!location.latitude && !location.longitude)) {
 				navigator.geolocation.getCurrentPosition(position => {
-					setCurrentLocation({latitude: position.coords.latitude, longitude: position.coords.longitude});
+					if (!location || !location.latitude || !location.longitude) {
+						setCurrentLocation({latitude: position.coords.latitude, longitude: position.coords.longitude});
+					}
 				});
 			}
 		} else {

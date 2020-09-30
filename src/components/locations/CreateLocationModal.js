@@ -4,7 +4,7 @@ import {Dialog, DialogTitle, Button, CircularProgress, MobileStepper} from '@mat
 import Snackbar from '../Snackbar';
 import {createLocation} from '../../requests';
 import SelectLocation from './SelectLocation';
-import SelectFishInfos from './selectFishInfos';
+import SelectFishInfos from './SelectFishInfos';
 import SelectNightFishing from './SelectNightFishing';
 import SelectOtherInfos from './SelectOtherInformations';
 import SelectNameLocation from './SelectNameLocation';

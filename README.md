@@ -2,10 +2,9 @@
 
 ## To do
 
-- [ ] Mettre la partie édition sur la saisie des captures
-- [ ] Homogéiniser noms
-- [ ] Session -> Rendre date et endroit obligatoire
+- [x] Homogéiniser noms
 - [ ] Corriger édition zone de pêche
+- [ ] Creation + Update + Delete Liste sessions
 - [ ] Mettre en place Redux
 - [ ] Utiliser sass
 
