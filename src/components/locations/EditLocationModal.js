@@ -6,7 +6,7 @@ import {updateLocation} from '../../requests';
 import SelectLocation from './SelectLocation';
 import SelectFishInfos from './SelectFishInfos';
 import SelectNightFishing from './SelectNightFishing';
-import SelectOtherInfos from './SelectOtherInformations';
+import SelectOtherInfos from '../generics/SelectOtherInformations';
 import SelectNameLocation from './SelectNameLocation';
 
 const EditLocationModal = ({selectedLocation, setSelectedLocation}) => {

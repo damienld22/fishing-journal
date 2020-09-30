@@ -12,7 +12,7 @@ const FishItem = ({fish, onClick}) => {
 			<CardContent style={styles.cardContent}>
 				{fish.picture ? <img alt="catch" height={50} src={fish.picture}/> : <p>/</p>}
 				<p>{fish.weight ? `${fish.weight} kg` : '/'}</p>
-				<p>{fish.catchDate ? moment(fish.catchDate * 1000).format('lll') : '/'}</p>
+				<p>{fish.catchDate ? moment.unix(fish.catchDate).format('lll') : '/'}</p>
 			</CardContent>
 		</Card>
 	);

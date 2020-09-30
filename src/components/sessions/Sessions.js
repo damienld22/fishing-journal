@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import {getSessions} from '../../requests';
+import {getSessions, getLocations} from '../../requests';
 import Snackbar from '../Snackbar';
 import {List, Paper, CircularProgress} from '@material-ui/core';
 import SessionItem from './SessionItem';
+import CreateSessionModal from './CreateSessionModal';
 
 const Sessions = () => {
 	const [createSessionModalIsOpen, setCreateSessionModalIsOpen] = useState(false);
@@ -12,6 +13,13 @@ const Sessions = () => {
 	const [selectedSession, setSelectedSession] = useState(null);
 	const [displayProgress, setDisplayProgress] = useState(false);
 	const [messageSnackbar, setMessageSnackbar] = useState(null);
+	const [availableLocations, setAvailableLocations] = useState([]);
+
+	useEffect(() => {
+		getLocations()
+			.then(({data}) => setAvailableLocations(data))
+			.catch(() => console.error('Failed to get available locations'));
+	}, []);
 
 	function getSessionsFromServer() {
 		getSessions()
@@ -40,7 +48,12 @@ const Sessions = () => {
 				<List>
 					{
 						sessions.map(session => (
-							<SessionItem key={session._id} session={session} onClick={() => setSelectedSession(session)} onDeleteDone={getSessionsFromServer}/>
+							<SessionItem
+								key={session._id}
+								session={session}
+								availableLocations={availableLocations}
+								onClick={() => setSelectedSession(session)}
+								onDeleteDone={getSessionsFromServer}/>
 						))
 					}
 				</List>
@@ -52,7 +65,7 @@ const Sessions = () => {
 
 			{ displayProgress && <CircularProgress style={styles.progress}/>}
 			{/* {selectedLocation && <EditLocationModal selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation}/>} */}
-			{/* <CreateLocationModal isOpen={createSessionModalIsOpen} setState={setCreateSessionModalIsOpen}/> */}
+			<CreateSessionModal isOpen={createSessionModalIsOpen} setState={setCreateSessionModalIsOpen}/>
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
 		</div>
 	);

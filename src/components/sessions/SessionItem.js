@@ -11,10 +11,18 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {deleteSession} from '../../requests';
 import Snackbar from '../Snackbar';
+import moment from 'moment';
 
-const SessionItem = ({session, onClick, onDeleteDone}) => {
+const SessionItem = ({session, onClick, onDeleteDone, availableLocations}) => {
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 	const [messageSnackbar, setMessageSnackbar] = useState(null);
+
+	moment.locale('fr');
+
+	const findLocationName = (session, availableLocations) => {
+		const found = availableLocations.find(location => location._id === session.location);
+		return found ? found.name : '/';
+	};
 
 	const handleDelete = () => {
 		setMessageSnackbar(null);
@@ -33,7 +41,8 @@ const SessionItem = ({session, onClick, onDeleteDone}) => {
 		<>
 			<Card style={styles.card} onClick={onClick}>
 				<CardContent style={styles.cardContent}>
-					<p style={styles.text}>{session.date}</p>
+					<p style={styles.text}>{moment.unix(session.start).format('L')}</p>
+					<p style={styles.text}>{findLocationName(session, availableLocations)}</p>
 
 					<IconButton onClick={evt => {
 						evt.preventDefault();
@@ -88,14 +97,15 @@ const styles = {
 		padding: 0
 	},
 	text: {
-		fontSize: '1.5em'
+		fontSize: '1em'
 	}
 };
 
 SessionItem.propTypes = {
 	session: PropTypes.object,
 	onClick: PropTypes.func.isRequired,
-	onDeleteDone: PropTypes.func.isRequired
+	onDeleteDone: PropTypes.func.isRequired,
+	availableLocations: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default SessionItem;

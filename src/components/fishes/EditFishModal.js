@@ -37,7 +37,7 @@ const EditFishModal = ({selectedFish, setSelectedFish}) => {
 
 	return (
 		<Dialog fullWidth open={Boolean(selectedFish)} maxWidth="xl" onClose={() => setSelectedFish(null)}>
-			<DialogTitle>{`Prise du ${moment(date * 1000).format('LLL')}`}</DialogTitle>
+			<DialogTitle>{`Prise du ${moment.unix(date).format('LLL')}`}</DialogTitle>
 
 			<div style={styles.content}>
 				{ step === 0 && <SelectPicture picture={picture} onSelectPicture={setPicture}/>}

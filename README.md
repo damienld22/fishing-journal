@@ -2,9 +2,8 @@
 
 ## To do
 
-- [x] Homogéiniser noms
-- [ ] Corriger édition zone de pêche
+- [ ] Ne pas permettre une date de session de début après la fin (+ message erreur)
 - [ ] Creation + Update + Delete Liste sessions
-- [ ] Mettre en place Redux
+- [ ] Mettre en place Redux -> Éviter requests en trop
 - [ ] Utiliser sass
 
