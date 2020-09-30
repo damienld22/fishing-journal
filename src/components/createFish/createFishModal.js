@@ -45,7 +45,7 @@ const CreateFishModal = ({isOpen, setState}) => {
 
 			<div style={styles.content}>
 				{ step === 0 && <SelectPicture picture={picture} onSelectPicture={setPicture}/>}
-				{ step === 1 && <SelectWeight onSelectWeight={setWeight}/>}
+				{ step === 1 && <SelectWeight weight={weight} onSelectWeight={setWeight}/>}
 				{ step === 2 && <SelectDate date={date} onSelectDate={setDate}/>}
 				{ step === 3 && <SelectBait bait={bait} onSelectBait={setBait}/>}
 				{ step === 4 && <SelectPlace place={place} onSelectPlace={setPlace}/>}
