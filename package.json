@@ -10,10 +10,9 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
     "moment": "^2.28.0",
-    "pigeon-maps": "^0.16.1",
-    "pigeon-marker": "^0.3.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-map-gl": "^5.2.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
   },
