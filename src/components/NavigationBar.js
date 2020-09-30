@@ -4,7 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import FishingIcon from '@material-ui/icons/ThumbUp';
 import LocationIcon from '@material-ui/icons/LocationOn';
-import HomeIcon from '@material-ui/icons/Home';
+import SessionIcon from '@material-ui/icons/Event';
 import NavigationItem from './NavigationItem';
 import {useHistory} from 'react-router-dom';
 
@@ -30,9 +30,9 @@ const NavigationBar = () => {
 					</div>
 
 					<NavigationItem
-						Icon={HomeIcon} text="Accueil" onClick={() => {
+						Icon={SessionIcon} text="Mes sessions" onClick={() => {
 							setDrawerOpen(false);
-							history.push('/');
+							history.push('/sessions');
 						}}/>
 					<Divider/>
 					<NavigationItem

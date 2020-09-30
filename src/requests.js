@@ -14,6 +14,14 @@ export async function getFishCatch() {
 	return axios.get(API_URL + '/fishes');
 }
 
+export async function updateFishCatch(id, fish) {
+	return axios.put(API_URL + '/fishes/' + id, fish, {
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+}
+
 export async function deleteFishCatch(id) {
 	return axios.delete(API_URL + '/fishes/' + id);
 }
@@ -40,4 +48,12 @@ export async function updateLocation(id, location) {
 			'Content-Type': 'application/json'
 		}
 	});
+}
+
+export async function getSessions() {
+	return axios.get(API_URL + '/sessions');
+}
+
+export async function deleteSession(id) {
+	return axios.delete(API_URL + '/sessions/' + id);
 }

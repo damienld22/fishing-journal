@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {TextField} from '@material-ui/core';
 
-const SelectWeight = ({onSelectWeight}) => {
+const SelectWeight = ({weight, onSelectWeight}) => {
 	return (
 		<div style={styles.container}>
 			<p style={styles.title}>Poids</p>
 
-			<TextField style={styles.input} label="Poids en Kg" variant="outlined" type="number" onChange={event => onSelectWeight(event.target.value)}/>
+			<TextField defaultValue={weight || ''} style={styles.input} label="Poids en Kg" variant="outlined" type="number" onChange={event => onSelectWeight(event.target.value)}/>
 		</div>
 	);
 };
@@ -32,6 +32,7 @@ const styles = {
 };
 
 SelectWeight.propTypes = {
+	weight: PropTypes.string,
 	onSelectWeight: PropTypes.func.isRequired
 };
 

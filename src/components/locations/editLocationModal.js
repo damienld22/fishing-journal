@@ -34,12 +34,7 @@ const EditLocationModal = ({selectedLocation, setSelectedLocation}) => {
 	};
 
 	return (
-		<Dialog
-			fullWidth
-			open={Boolean(selectedLocation)}
-			maxWidth="xl"
-			onClose={() => setSelectedLocation(null)}
-		>
+		<Dialog fullWidth open={Boolean(selectedLocation)} maxWidth="xl" onClose={() => setSelectedLocation(null)}>
 			<DialogTitle>{selectedLocation.name || 'Plan d\'eau'}</DialogTitle>
 
 			<div style={styles.content}>

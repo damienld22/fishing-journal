@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import CreateFishModal from './createFish/createFishModal';
-import DisplayFishModal from './DisplayFishModal';
 import {getFishCatch} from '../requests';
 import Snackbar from './Snackbar';
 import FishItem from './FishItem';
 import {List, Paper, CircularProgress} from '@material-ui/core';
+import EditFishModal from './createFish/editFishModal';
 
 const Fishes = () => {
 	const [createFishModalIsOpen, setCreateFishModalIsOpen] = useState(false);
@@ -49,7 +49,7 @@ const Fishes = () => {
 			</IconButton>
 
 			{ displayProgress && <CircularProgress style={styles.progress}/>}
-			{selectedFish && <DisplayFishModal isOpen={Boolean(selectedFish)} setState={() => setSelectedFish(null)} fish={selectedFish}/>}
+			{selectedFish && <EditFishModal selectedFish={selectedFish} setSelectedFish={setSelectedFish}/>}
 			<CreateFishModal isOpen={createFishModalIsOpen} setState={setCreateFishModalIsOpen}/>
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
 		</div>

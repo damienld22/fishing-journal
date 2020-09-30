@@ -1,9 +1,9 @@
 import React, {lazy, Suspense} from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import 'mapbox-gl/dist/mapbox-gl.css';
-const Home = lazy(() => import('./components/Home'));
 const FishesPage = lazy(() => import('./components/Fishes'));
 const LocationsPage = lazy(() => import('./components/locations/Locations'));
+const SessionsPage = lazy(() => import('./components/sessions/Sessions'));
 const NavigationBar = lazy(() => import('./components/NavigationBar'));
 
 const App = () => (
@@ -19,8 +19,11 @@ const App = () => (
 						<Route path="/locations">
 							<LocationsPage/>
 						</Route>
+						<Route path="/sessions">
+							<SessionsPage/>
+						</Route>
 						<Route exact path="/">
-							<Home/>
+							<Redirect to="/sessions"/>
 						</Route>
 					</div>
 				</>
