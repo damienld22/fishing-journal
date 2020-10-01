@@ -4,8 +4,6 @@ import {TextField} from '@material-ui/core';
 import moment from 'moment';
 
 const SelectDate = ({onSelectDate, date}) => {
-	moment.locale('fr');
-
 	const formatCurrent = timestamp => {
 		return moment.unix(timestamp).format('YYYY-MM-DD') + 'T' + moment.unix(timestamp).format('HH:mm');
 	};

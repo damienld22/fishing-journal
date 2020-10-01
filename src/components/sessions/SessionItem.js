@@ -17,8 +17,6 @@ const SessionItem = ({session, onClick, onDeleteDone, availableLocations}) => {
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 	const [messageSnackbar, setMessageSnackbar] = useState(null);
 
-	moment.locale('fr');
-
 	const findLocationName = (session, availableLocations) => {
 		const found = availableLocations.find(location => location._id === session.location);
 		return found ? found.name : '/';

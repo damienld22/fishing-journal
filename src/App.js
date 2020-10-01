@@ -1,10 +1,14 @@
 import React, {lazy, Suspense} from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import moment from 'moment';
+import localization from 'moment/locale/fr';
 const FishesPage = lazy(() => import('./components/fishes/Fishes'));
 const LocationsPage = lazy(() => import('./components/locations/Locations'));
 const SessionsPage = lazy(() => import('./components/sessions/Sessions'));
 const NavigationBar = lazy(() => import('./components/NavigationBar'));
+
+moment.locale('fr', localization);
 
 const App = () => (
 	<Router>
