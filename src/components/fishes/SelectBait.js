@@ -1,14 +1,15 @@
 import {TextField} from '@material-ui/core';
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './fishes.module.css';
 
 const SelectBait = ({bait, onSelectBait}) => {
 	return (
-		<div style={styles.container}>
-			<p style={styles.title}>Appât</p>
+		<div className={styles.containerSelector}>
+			<p className={styles.titleSelector}>Appât</p>
 
 			<TextField
-				style={styles.input}
+				className={styles.inputSelector}
 				label="Appât"
 				type="text"
 				variant="outlined"
@@ -20,25 +21,6 @@ const SelectBait = ({bait, onSelectBait}) => {
 			/>
 		</div>
 	);
-};
-
-const styles = {
-	title: {
-		fontSize: '1.5em',
-		fontWeight: 'bold',
-		fontStyle: 'italic'
-	},
-	input: {
-		marginTop: 20
-	},
-	container: {
-		paddingLeft: 20,
-		paddingRight: 20,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'flex-start'
-	}
 };
 
 SelectBait.propTypes = {

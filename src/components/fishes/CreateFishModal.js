@@ -9,6 +9,7 @@ import SelectBait from './SelectBait';
 import SelectPlace from './SelectPlace';
 import Snackbar from '../Snackbar';
 import {createFishCatch} from '../../requests';
+import styles from './fishes.module.css';
 
 const CreateFishModal = ({isOpen, setState}) => {
 	const [step, setStep] = useState(0);
@@ -35,61 +36,29 @@ const CreateFishModal = ({isOpen, setState}) => {
 	};
 
 	return (
-		<Dialog
-			fullWidth
-			open={isOpen}
-			maxWidth="xl"
-			onClose={() => setState(false)}
-		>
+		<Dialog fullWidth open={isOpen} maxWidth="xl" onClose={() => setState(false)}>
 			<DialogTitle>Nouvelle prise</DialogTitle>
 
-			<div style={styles.content}>
+			<div className={styles.content}>
 				{ step === 0 && <SelectPicture picture={picture} onSelectPicture={setPicture}/>}
 				{ step === 1 && <SelectWeight weight={weight} onSelectWeight={setWeight}/>}
 				{ step === 2 && <SelectDate date={date} onSelectDate={setDate}/>}
 				{ step === 3 && <SelectBait bait={bait} onSelectBait={setBait}/>}
 				{ step === 4 && <SelectPlace place={place} onSelectPlace={setPlace}/>}
-
 			</div>
 
-			<div style={styles.buttonsAndStepper}>
+			<div className={styles.buttonsAndStepper}>
 				<MobileStepper variant="dots" steps={5} position="static" activeStep={step}/>
-				<div style={styles.buttons}>
-					{ step === 0 ? <Button style={styles.button} onClick={() => setState(false)}>Annuler</Button> : <Button style={styles.button} onClick={() => setStep(step - 1)}>Précédent</Button>}
-					{ step === 4 ? <Button style={styles.button} onClick={onValidate}>Confirmer</Button> : <Button style={styles.button} onClick={() => setStep(step + 1)}>Suivant</Button>}
+				<div className={styles.buttons}>
+					{ step === 0 ? <Button className={styles.button} onClick={() => setState(false)}>Annuler</Button> : <Button className={styles.button} onClick={() => setStep(step - 1)}>Précédent</Button>}
+					{ step === 4 ? <Button className={styles.button} onClick={onValidate}>Confirmer</Button> : <Button className={styles.button} onClick={() => setStep(step + 1)}>Suivant</Button>}
 				</div>
 			</div>
 
-			{ displayProgress && <CircularProgress style={styles.progress}/>}
+			{ displayProgress && <CircularProgress className={styles.progress}/>}
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
 		</Dialog>
 	);
-};
-
-const styles = {
-	content: {
-		height: '50vh'
-	},
-	progress: {
-		position: 'absolute',
-		left: 'calc(50% - 20px)',
-		top: '50%'
-	},
-	buttonsAndStepper: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center'
-	},
-	buttons: {
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		alignItems: 'center',
-		paddingBottom: 10
-	},
-	button: {
-		width: '40vw'
-	}
 };
 
 CreateFishModal.propTypes = {

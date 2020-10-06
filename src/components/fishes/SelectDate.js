@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {TextField} from '@material-ui/core';
 import moment from 'moment';
+import styles from './fishes.module.css';
 
 const SelectDate = ({onSelectDate, date}) => {
 	const formatCurrent = timestamp => {
@@ -13,11 +14,11 @@ const SelectDate = ({onSelectDate, date}) => {
 	};
 
 	return (
-		<div style={styles.container}>
-			<p style={styles.title}>Date de capture</p>
+		<div className={styles.containerSelector}>
+			<p className={styles.titleSelector}>Date de capture</p>
 
 			<TextField
-				style={styles.input}
+				className={styles.inputSelector}
 				label="Date de capture"
 				type="datetime-local"
 				value={formatCurrent(date || Date.now())}
@@ -28,25 +29,6 @@ const SelectDate = ({onSelectDate, date}) => {
 			/>
 		</div>
 	);
-};
-
-const styles = {
-	title: {
-		fontSize: '1.5em',
-		fontWeight: 'bold',
-		fontStyle: 'italic'
-	},
-	input: {
-		marginTop: 20
-	},
-	container: {
-		paddingLeft: 20,
-		paddingRight: 20,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'flex-start'
-	}
 };
 
 SelectDate.propTypes = {

@@ -1,14 +1,15 @@
 import {TextField} from '@material-ui/core';
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './fishes.module.css';
 
 const SelectPlace = ({place, onSelectPlace}) => {
 	return (
-		<div style={styles.container}>
-			<p style={styles.title}>Zone de capture</p>
+		<div className={styles.containerSelector}>
+			<p className={styles.titleSelector}>Zone de capture</p>
 
 			<TextField
-				style={styles.input}
+				className={styles.inputSelector}
 				label="Zone de capture"
 				type="text"
 				variant="outlined"
@@ -20,25 +21,6 @@ const SelectPlace = ({place, onSelectPlace}) => {
 			/>
 		</div>
 	);
-};
-
-const styles = {
-	title: {
-		fontSize: '1.5em',
-		fontWeight: 'bold',
-		fontStyle: 'italic'
-	},
-	input: {
-		marginTop: 20
-	},
-	container: {
-		paddingLeft: 20,
-		paddingRight: 20,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'flex-start'
-	}
 };
 
 SelectPlace.propTypes = {

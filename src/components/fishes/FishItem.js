@@ -3,35 +3,20 @@ import {Card, CardContent} from '@material-ui/core';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import localization from 'moment/locale/fr';
+import styles from './fishes.module.css';
 
 const FishItem = ({fish, onClick}) => {
 	moment().locale('fr', localization);
 
 	return (
-		<Card style={styles.card} onClick={onClick}>
-			<CardContent style={styles.cardContent}>
+		<Card className={styles.card} onClick={onClick}>
+			<CardContent className={styles.cardContent}>
 				{fish.picture ? <img alt="catch" height={50} src={fish.picture}/> : <p>/</p>}
 				<p>{fish.weight ? `${fish.weight} kg` : '/'}</p>
 				<p>{fish.catchDate ? moment.unix(fish.catchDate).format('lll') : '/'}</p>
 			</CardContent>
 		</Card>
 	);
-};
-
-const styles = {
-	card: {
-		width: '90%',
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		marginTop: 10,
-		marginBottom: 10
-	},
-	cardContent: {
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between'
-	}
 };
 
 FishItem.propTypes = {

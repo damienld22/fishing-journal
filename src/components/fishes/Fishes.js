@@ -7,6 +7,7 @@ import Snackbar from '../Snackbar';
 import FishItem from './FishItem';
 import {List, Paper, CircularProgress} from '@material-ui/core';
 import EditFishModal from './EditFishModal';
+import styles from './fishes.module.css';
 
 const Fishes = () => {
 	const [createFishModalIsOpen, setCreateFishModalIsOpen] = useState(false);
@@ -31,10 +32,10 @@ const Fishes = () => {
 	}, [createFishModalIsOpen, selectedFish]);
 
 	return (
-		<div style={styles.container}>
+		<div className={styles.container}>
 			<h1>Liste des prises</h1>
 
-			<Paper style={styles.scrollList}>
+			<Paper className={styles.scrollList}>
 				<List>
 					{
 						fishes.map(fish => (
@@ -44,42 +45,16 @@ const Fishes = () => {
 				</List>
 			</Paper>
 
-			<IconButton style={styles.addButton} onClick={() => setCreateFishModalIsOpen(true)}>
+			<IconButton className={styles.addButton} onClick={() => setCreateFishModalIsOpen(true)}>
 				<AddIcon/>
 			</IconButton>
 
-			{ displayProgress && <CircularProgress style={styles.progress}/>}
+			{ displayProgress && <CircularProgress className={styles.progress}/>}
 			{selectedFish && <EditFishModal selectedFish={selectedFish} setSelectedFish={setSelectedFish}/>}
 			<CreateFishModal isOpen={createFishModalIsOpen} setState={setCreateFishModalIsOpen}/>
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
 		</div>
 	);
-};
-
-const styles = {
-	container: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center'
-	},
-	scrollList: {
-		minHeight: '75vh',
-		maxHeight: '75vh',
-		width: '100%',
-		overflow: 'auto'
-	},
-	progress: {
-		position: 'absolute',
-		left: 'calc(50% - 20px)',
-		top: '50%'
-	},
-	addButton: {
-		position: 'absolute',
-		bottom: '10%',
-		right: '10%',
-		backgroundColor: 'blue',
-		color: 'white'
-	}
 };
 
 export default Fishes;
