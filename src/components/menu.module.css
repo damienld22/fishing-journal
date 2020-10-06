@@ -1,0 +1,30 @@
+.menuIcon {
+  color: white;
+}
+
+.drawer {
+  width: 240px;
+  flex-shrink: 0px;
+}
+
+.drawerPaper {
+  width: 240px;
+}
+
+.closeButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.text {
+  margin-left: 20px;
+}

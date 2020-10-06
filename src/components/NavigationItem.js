@@ -1,24 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './menu.module.css';
 
 const NavigationItem = ({Icon, text, onClick}) => (
-	<div style={styles.container} onClick={onClick}>
+	<div className={styles.container} onClick={onClick}>
 		<Icon/>
-		<p style={styles.text}>{text}</p>
+		<p className={styles.text}>{text}</p>
 	</div>
 );
-
-const styles = {
-	container: {
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center',
-		paddingLeft: 10
-	},
-	text: {
-		marginLeft: 20
-	}
-};
 
 NavigationItem.propTypes = {
 	Icon: PropTypes.object.isRequired,

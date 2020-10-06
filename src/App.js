@@ -19,7 +19,7 @@ const App = () => (
 				<NavigationBar/>
 				<Switch>
 					<>
-						<div style={styles.containerPages}>
+						<div style={{padding: 10}}>
 							<Route path="/fishes">
 								<FishesPage/>
 							</Route>
@@ -40,11 +40,5 @@ const App = () => (
 		</Router>
 	</StylesProvider>
 );
-
-const styles = {
-	containerPages: {
-		padding: 10
-	}
-};
 
 export default App;

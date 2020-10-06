@@ -8,7 +8,7 @@ const SelectSessionLocation = ({onSelectLocation, location, availableLocations})
 		<div className={styles.containerSelector}>
 			<p className={styles.titleSelector}>Zone de pêche</p>
 
-			<FormControl className={styles.inputSelector}>
+			<FormControl className={styles.inputSelectorList}>
 				<InputLabel htmlFor="location-session">Zone de pêche</InputLabel>
 				<Select
 					native
