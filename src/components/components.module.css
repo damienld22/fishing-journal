@@ -4,6 +4,13 @@
   align-items: center;
 }
 
+.containerAlignedToLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
 .content {
   height: 50vh;
 }
@@ -30,6 +37,15 @@
 
 .button {
   width: 40vw;
+}
+
+.buttonCancel {
+  width: 40vw;
+  margin: auto;
+  position: absolute;
+  bottom: 10vh;
+  align-self: center;
+
 }
 
 .addButton {
@@ -100,4 +116,35 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+}
+
+.cardWithBorder {
+  border: 2px solid black;
+  border-radius: 30px;
+  align-self: center;
+  margin: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.textResult {
+  margin: 2px !important;
+}
+
+.textResultValue {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  font-weight: bold;
+  text-align: center;
 }

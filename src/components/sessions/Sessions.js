@@ -8,15 +8,16 @@ import SessionItem from './SessionItem';
 import CreateSessionModal from './CreateSessionModal';
 import EditSessionModal from './EditSessionModal';
 import styles from '../components.module.css';
+import {useHistory} from 'react-router-dom';
 
 const Sessions = () => {
 	const [createSessionModalIsOpen, setCreateSessionModalIsOpen] = useState(false);
 	const [sessions, setSessions] = useState([]);
-	const [selectedSession, setSelectedSession] = useState(null);
 	const [toEditSession, setToEditSession] = useState(null);
 	const [displayProgress, setDisplayProgress] = useState(false);
 	const [messageSnackbar, setMessageSnackbar] = useState(null);
 	const [availableLocations, setAvailableLocations] = useState([]);
+	const history = useHistory();
 
 	useEffect(() => {
 		getLocations()
@@ -37,11 +38,11 @@ const Sessions = () => {
 	}
 
 	useEffect(() => {
-		if (!createSessionModalIsOpen || !selectedSession || !toEditSession) {
+		if (!createSessionModalIsOpen || !toEditSession) {
 			setDisplayProgress(true);
 			getSessionsFromServer();
 		}
-	}, [createSessionModalIsOpen, selectedSession, toEditSession]);
+	}, [createSessionModalIsOpen, toEditSession]);
 
 	return (
 		<div className={styles.container}>
@@ -55,7 +56,7 @@ const Sessions = () => {
 								key={session._id}
 								session={session}
 								availableLocations={availableLocations}
-								onClick={() => setSelectedSession(session)}
+								onClick={id => history.push(`/sessions/${id}`)}
 								onDeleteDone={getSessionsFromServer}
 								onEdit={setToEditSession}/>
 						))

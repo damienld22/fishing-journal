@@ -39,7 +39,7 @@ const SessionItem = ({session, onClick, onDeleteDone, availableLocations, onEdit
 
 	return (
 		<>
-			<Card className={styles.card} onClick={onClick}>
+			<Card className={styles.card} onClick={() => onClick(session._id)}>
 				<CardContent className={styles.cardContent}>
 					<div>
 						<p className={styles.text}>{moment.unix(session.start).format('L')}</p>

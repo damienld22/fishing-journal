@@ -8,6 +8,7 @@ const FishesPage = lazy(() => import('./components/fishes/Fishes'));
 const LocationsPage = lazy(() => import('./components/locations/Locations'));
 const SessionsPage = lazy(() => import('./components/sessions/Sessions'));
 const NavigationBar = lazy(() => import('./components/NavigationBar'));
+const DisplaySession = lazy(() => import('./components/sessions/DisplaySession'));
 
 moment.locale('fr', localization);
 
@@ -20,14 +21,17 @@ const App = () => (
 				<Switch>
 					<>
 						<div style={{padding: 10}}>
-							<Route path="/fishes">
+							<Route exact path="/fishes">
 								<FishesPage/>
 							</Route>
-							<Route path="/locations">
+							<Route exact path="/locations">
 								<LocationsPage/>
 							</Route>
-							<Route path="/sessions">
+							<Route exact path="/sessions">
 								<SessionsPage/>
+							</Route>
+							<Route path="/sessions/:id">
+								<DisplaySession/>
 							</Route>
 							<Route exact path="/">
 								<Redirect to="/sessions"/>
