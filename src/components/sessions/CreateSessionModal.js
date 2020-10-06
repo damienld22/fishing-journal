@@ -7,6 +7,7 @@ import SelectSessionLocation from './SelectSessionLocation';
 import SelectOtherInfos from '../generics/SelectOtherInformations';
 import Snackbar from '../Snackbar';
 import {createSession, getLocations} from '../../requests';
+import styles from '../components.module.css';
 
 const CreateSessionModal = ({isOpen, setState}) => {
 	const [step, setStep] = useState(0);
@@ -42,50 +43,24 @@ const CreateSessionModal = ({isOpen, setState}) => {
 		<Dialog fullWidth open={isOpen} maxWidth="xl" onClose={() => setState(false)}>
 			<DialogTitle>Nouvelle session</DialogTitle>
 
-			<div style={styles.content}>
+			<div className={styles.content}>
 				{ step === 0 && <SelectStartEnd start={start} end={end} onSelectStart={setStart} onSelectEnd={setEnd}/>}
 				{ step === 1 && <SelectSessionLocation location={location} availableLocations={availableLocations} onSelectLocation={setLocation}/>}
 				{ step === 2 && <SelectOtherInfos otherInfos={otherInformations} onSelectOtherInfos={setOtherInformations}/>}
 			</div>
 
-			<div style={styles.buttonsAndStepper}>
+			<div className={styles.buttonsAndStepper}>
 				<MobileStepper variant="dots" steps={3} position="static" activeStep={step}/>
-				<div style={styles.buttons}>
-					{ step === 0 ? <Button style={styles.button} onClick={() => setState(false)}>Annuler</Button> : <Button style={styles.button} onClick={() => setStep(step - 1)}>Précédent</Button>}
-					{ step === 2 ? <Button style={styles.button} onClick={onValidate}>Confirmer</Button> : <Button style={styles.button} onClick={() => setStep(step + 1)}>Suivant</Button>}
+				<div className={styles.buttons}>
+					{ step === 0 ? <Button className={styles.button} onClick={() => setState(false)}>Annuler</Button> : <Button className={styles.button} onClick={() => setStep(step - 1)}>Précédent</Button>}
+					{ step === 2 ? <Button className={styles.button} onClick={onValidate}>Confirmer</Button> : <Button className={styles.button} onClick={() => setStep(step + 1)}>Suivant</Button>}
 				</div>
 			</div>
 
-			{ displayProgress && <CircularProgress style={styles.progress}/>}
+			{ displayProgress && <CircularProgress className={styles.progress}/>}
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
 		</Dialog>
 	);
-};
-
-const styles = {
-	content: {
-		height: '50vh'
-	},
-	progress: {
-		position: 'absolute',
-		left: 'calc(50% - 20px)',
-		top: '50%'
-	},
-	buttonsAndStepper: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center'
-	},
-	buttons: {
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		alignItems: 'center',
-		paddingBottom: 10
-	},
-	button: {
-		width: '40vw'
-	}
 };
 
 CreateSessionModal.propTypes = {

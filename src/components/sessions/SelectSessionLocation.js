@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {FormControl, InputLabel, Select} from '@material-ui/core';
+import styles from '../components.module.css';
 
 const SelectSessionLocation = ({onSelectLocation, location, availableLocations}) => {
 	return (
-		<div style={styles.container}>
-			<p style={styles.title}>Zone de pêche</p>
+		<div className={styles.containerSelector}>
+			<p className={styles.titleSelector}>Zone de pêche</p>
 
-			<FormControl style={styles.input}>
+			<FormControl className={styles.inputSelector}>
 				<InputLabel htmlFor="location-session">Zone de pêche</InputLabel>
 				<Select
 					native
@@ -25,26 +26,6 @@ const SelectSessionLocation = ({onSelectLocation, location, availableLocations})
 			</FormControl>
 		</div>
 	);
-};
-
-const styles = {
-	title: {
-		fontSize: '1.5em',
-		fontWeight: 'bold',
-		fontStyle: 'italic'
-	},
-	input: {
-		minWidth: 200,
-		marginTop: 20
-	},
-	container: {
-		paddingLeft: 20,
-		paddingRight: 20,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'flex-start'
-	}
 };
 
 SelectSessionLocation.propTypes = {

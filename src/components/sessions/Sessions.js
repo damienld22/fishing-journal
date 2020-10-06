@@ -6,6 +6,7 @@ import Snackbar from '../Snackbar';
 import {List, Paper, CircularProgress} from '@material-ui/core';
 import SessionItem from './SessionItem';
 import CreateSessionModal from './CreateSessionModal';
+import styles from '../components.module.css';
 
 const Sessions = () => {
 	const [createSessionModalIsOpen, setCreateSessionModalIsOpen] = useState(false);
@@ -41,10 +42,10 @@ const Sessions = () => {
 	}, [createSessionModalIsOpen, selectedSession]);
 
 	return (
-		<div style={styles.container}>
+		<div className={styles.container}>
 			<h1>Sessions</h1>
 
-			<Paper style={styles.scrollList}>
+			<Paper className={styles.scrollList}>
 				<List>
 					{
 						sessions.map(session => (
@@ -59,42 +60,16 @@ const Sessions = () => {
 				</List>
 			</Paper>
 
-			<IconButton style={styles.addButton} onClick={() => setCreateSessionModalIsOpen(true)}>
+			<IconButton className={styles.addButton} onClick={() => setCreateSessionModalIsOpen(true)}>
 				<AddIcon/>
 			</IconButton>
 
-			{ displayProgress && <CircularProgress style={styles.progress}/>}
+			{ displayProgress && <CircularProgress className={styles.progress}/>}
 			{/* {selectedLocation && <EditLocationModal selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation}/>} */}
 			<CreateSessionModal isOpen={createSessionModalIsOpen} setState={setCreateSessionModalIsOpen}/>
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
 		</div>
 	);
-};
-
-const styles = {
-	container: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center'
-	},
-	scrollList: {
-		minHeight: '75vh',
-		maxHeight: '75vh',
-		width: '100%',
-		overflow: 'auto'
-	},
-	progress: {
-		position: 'absolute',
-		left: 'calc(50% - 20px)',
-		top: '50%'
-	},
-	addButton: {
-		position: 'absolute',
-		bottom: '10%',
-		right: '10%',
-		backgroundColor: 'blue',
-		color: 'white'
-	}
 };
 
 export default Sessions;

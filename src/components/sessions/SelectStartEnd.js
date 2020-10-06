@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {TextField} from '@material-ui/core';
 import moment from 'moment';
+import styles from '../components.module.css';
 
 const SelectStartEnd = ({onSelectStart, start, onSelectEnd, end}) => {
 	const formatCurrent = timestamp => {
@@ -13,11 +14,11 @@ const SelectStartEnd = ({onSelectStart, start, onSelectEnd, end}) => {
 	};
 
 	return (
-		<div style={styles.container}>
-			<p style={styles.title}>Date de début / fin</p>
+		<div className={styles.containerSelector}>
+			<p className={styles.titleSelector}>Date de début / fin</p>
 
 			<TextField
-				style={styles.input}
+				className={styles.inputSelector}
 				label="Début"
 				type="datetime-local"
 				value={formatCurrent(start || Date.now())}
@@ -27,7 +28,7 @@ const SelectStartEnd = ({onSelectStart, start, onSelectEnd, end}) => {
 				onChange={value => onUpdateDate(value, onSelectStart)}/>
 
 			<TextField
-				style={styles.input}
+				className={styles.inputSelector}
 				label="Fin"
 				type="datetime-local"
 				value={formatCurrent(end || Date.now())}
@@ -37,25 +38,6 @@ const SelectStartEnd = ({onSelectStart, start, onSelectEnd, end}) => {
 				onChange={value => onUpdateDate(value, onSelectEnd)}/>
 		</div>
 	);
-};
-
-const styles = {
-	title: {
-		fontSize: '1.5em',
-		fontWeight: 'bold',
-		fontStyle: 'italic'
-	},
-	input: {
-		marginTop: 20
-	},
-	container: {
-		paddingLeft: 20,
-		paddingRight: 20,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'flex-start'
-	}
 };
 
 SelectStartEnd.propTypes = {
