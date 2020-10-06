@@ -6,12 +6,14 @@ import Snackbar from '../Snackbar';
 import {List, Paper, CircularProgress} from '@material-ui/core';
 import SessionItem from './SessionItem';
 import CreateSessionModal from './CreateSessionModal';
+import EditSessionModal from './EditSessionModal';
 import styles from '../components.module.css';
 
 const Sessions = () => {
 	const [createSessionModalIsOpen, setCreateSessionModalIsOpen] = useState(false);
 	const [sessions, setSessions] = useState([]);
 	const [selectedSession, setSelectedSession] = useState(null);
+	const [toEditSession, setToEditSession] = useState(null);
 	const [displayProgress, setDisplayProgress] = useState(false);
 	const [messageSnackbar, setMessageSnackbar] = useState(null);
 	const [availableLocations, setAvailableLocations] = useState([]);
@@ -35,11 +37,11 @@ const Sessions = () => {
 	}
 
 	useEffect(() => {
-		if (!createSessionModalIsOpen || !selectedSession) {
+		if (!createSessionModalIsOpen || !selectedSession || !toEditSession) {
 			setDisplayProgress(true);
 			getSessionsFromServer();
 		}
-	}, [createSessionModalIsOpen, selectedSession]);
+	}, [createSessionModalIsOpen, selectedSession, toEditSession]);
 
 	return (
 		<div className={styles.container}>
@@ -54,7 +56,8 @@ const Sessions = () => {
 								session={session}
 								availableLocations={availableLocations}
 								onClick={() => setSelectedSession(session)}
-								onDeleteDone={getSessionsFromServer}/>
+								onDeleteDone={getSessionsFromServer}
+								onEdit={setToEditSession}/>
 						))
 					}
 				</List>
@@ -65,7 +68,7 @@ const Sessions = () => {
 			</IconButton>
 
 			{ displayProgress && <CircularProgress className={styles.progress}/>}
-			{/* {selectedLocation && <EditLocationModal selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation}/>} */}
+			{toEditSession && <EditSessionModal session={toEditSession} setToEditSession={setToEditSession}/>}
 			<CreateSessionModal isOpen={createSessionModalIsOpen} setState={setCreateSessionModalIsOpen}/>
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
 		</div>

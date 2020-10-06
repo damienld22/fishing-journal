@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Card, CardContent} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import TrashIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,7 +15,7 @@ import Snackbar from '../Snackbar';
 import moment from 'moment';
 import styles from '../components.module.css';
 
-const SessionItem = ({session, onClick, onDeleteDone, availableLocations}) => {
+const SessionItem = ({session, onClick, onDeleteDone, availableLocations, onEdit}) => {
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 	const [messageSnackbar, setMessageSnackbar] = useState(null);
 
@@ -40,17 +41,30 @@ const SessionItem = ({session, onClick, onDeleteDone, availableLocations}) => {
 		<>
 			<Card className={styles.card} onClick={onClick}>
 				<CardContent className={styles.cardContent}>
-					<p className={styles.text}>{moment.unix(session.start).format('L')}</p>
-					<p className={styles.text}>{findLocationName(session, availableLocations)}</p>
+					<div>
+						<p className={styles.text}>{moment.unix(session.start).format('L')}</p>
+						<p className={styles.text}>{findLocationName(session, availableLocations)}</p>
+					</div>
 
-					<IconButton onClick={evt => {
-						evt.preventDefault();
-						evt.stopPropagation();
-						setDeleteModalOpen(true);
-					}}
-					>
-						<TrashIcon/>
-					</IconButton>
+					<div>
+						<IconButton onClick={evt => {
+							evt.preventDefault();
+							evt.stopPropagation();
+							onEdit(session);
+						}}
+						>
+							<EditIcon/>
+						</IconButton>
+
+						<IconButton onClick={evt => {
+							evt.preventDefault();
+							evt.stopPropagation();
+							setDeleteModalOpen(true);
+						}}
+						>
+							<TrashIcon/>
+						</IconButton>
+					</div>
 				</CardContent>
 			</Card>
 
@@ -79,6 +93,7 @@ const SessionItem = ({session, onClick, onDeleteDone, availableLocations}) => {
 SessionItem.propTypes = {
 	session: PropTypes.object,
 	onClick: PropTypes.func.isRequired,
+	onEdit: PropTypes.func.isRequired,
 	onDeleteDone: PropTypes.func.isRequired,
 	availableLocations: PropTypes.arrayOf(PropTypes.object)
 };
