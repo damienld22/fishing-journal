@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import ReactMapGL, {Marker} from 'react-map-gl';
+import styles from '../components.module.css';
 
 const token = 'pk.eyJ1IjoiZGFtaWVubGQiLCJhIjoiY2tmbjBncHB4MDZrMDJybXA0cGkwa3cyMCJ9.8BF21fxwSd0lZ_qXptND_Q';
 const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
@@ -29,7 +30,7 @@ const SelectLocation = ({location, onSelectLocation}) => {
 	}, [location, onSelectLocation]);
 
 	return (
-		<div style={styles.container}>
+		<div className={styles.containerCard}>
 			<ReactMapGL
 				mapboxApiAccessToken={token}
 				zoom={zoom}
@@ -45,10 +46,7 @@ const SelectLocation = ({location, onSelectLocation}) => {
 				}}
 			>
 				{ location && location.latitude && location.longitude && (
-					<Marker
-						longitude={location.longitude}
-						latitude={location.latitude}
-					>
+					<Marker longitude={location.longitude} latitude={location.latitude}>
 						<svg
 							height={20}
 							viewBox="0 0 24 24"
@@ -66,18 +64,6 @@ const SelectLocation = ({location, onSelectLocation}) => {
 			</ReactMapGL>
 		</div>
 	);
-};
-
-const styles = {
-	container: {
-		paddingLeft: 20,
-		paddingRight: 20,
-		height: '100%',
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'flex-start'
-	}
 };
 
 SelectLocation.propTypes = {

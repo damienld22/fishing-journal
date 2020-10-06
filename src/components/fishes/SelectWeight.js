@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {TextField} from '@material-ui/core';
-import styles from './fishes.module.css';
+import styles from '../components.module.css';
 
 const SelectWeight = ({weight, onSelectWeight}) => {
 	return (

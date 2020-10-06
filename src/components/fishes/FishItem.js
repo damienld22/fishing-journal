@@ -3,7 +3,7 @@ import {Card, CardContent} from '@material-ui/core';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import localization from 'moment/locale/fr';
-import styles from './fishes.module.css';
+import styles from '../components.module.css';
 
 const FishItem = ({fish, onClick}) => {
 	moment().locale('fr', localization);

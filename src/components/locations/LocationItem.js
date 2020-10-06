@@ -11,6 +11,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {deleteLocation} from '../../requests';
 import Snackbar from '../Snackbar';
+import styles from '../components.module.css';
 
 const LocationItem = ({location, onClick, onDeleteDone}) => {
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -31,9 +32,9 @@ const LocationItem = ({location, onClick, onDeleteDone}) => {
 
 	return (
 		<>
-			<Card style={styles.card} onClick={onClick}>
-				<CardContent style={styles.cardContent}>
-					<p style={styles.text}>{location.name || '/'}</p>
+			<Card className={styles.card} onClick={onClick}>
+				<CardContent className={styles.cardContent}>
+					<p>{location.name || '/'}</p>
 
 					<IconButton onClick={evt => {
 						evt.preventDefault();
@@ -66,30 +67,6 @@ const LocationItem = ({location, onClick, onDeleteDone}) => {
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
 		</>
 	);
-};
-
-const styles = {
-	card: {
-		width: '90%',
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		marginTop: 10,
-		marginBottom: 10,
-		paddingTop: 0,
-		paddingLeft: 10,
-		paddingRight: 10,
-		paddingBottom: 0
-	},
-	cardContent: {
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-		padding: 0
-	},
-	text: {
-		fontSize: '1.5em'
-	}
 };
 
 LocationItem.propTypes = {

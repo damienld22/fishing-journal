@@ -7,7 +7,7 @@ import Snackbar from '../Snackbar';
 import FishItem from './FishItem';
 import {List, Paper, CircularProgress} from '@material-ui/core';
 import EditFishModal from './EditFishModal';
-import styles from './fishes.module.css';
+import styles from '../components.module.css';
 
 const Fishes = () => {
 	const [createFishModalIsOpen, setCreateFishModalIsOpen] = useState(false);

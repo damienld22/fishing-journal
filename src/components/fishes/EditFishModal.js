@@ -9,7 +9,7 @@ import SelectBait from './SelectBait';
 import SelectPlace from './SelectPlace';
 import Snackbar from '../Snackbar';
 import {updateFishCatch} from '../../requests';
-import styles from './fishes.module.css';
+import styles from '../components.module.css';
 
 const EditFishModal = ({selectedFish, setSelectedFish}) => {
 	const [step, setStep] = useState(0);

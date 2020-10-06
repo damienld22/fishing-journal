@@ -2,7 +2,7 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import PublishIcon from '@material-ui/icons/Publish';
 import PropTypes from 'prop-types';
-import styles from './fishes.module.css';
+import styles from '../components.module.css';
 
 const SelectPicture = ({onSelectPicture, picture}) => {
 	const handleCapture = ({target}) => {

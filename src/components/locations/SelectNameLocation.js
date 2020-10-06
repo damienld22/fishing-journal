@@ -1,14 +1,15 @@
 import {TextField} from '@material-ui/core';
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from '../components.module.css';
 
 const SelectNameLocation = ({nameLocation, onSelectNameLocation}) => {
 	return (
-		<div style={styles.container}>
-			<p style={styles.title}>Nom</p>
+		<div className={styles.containerSelector}>
+			<p className={styles.titleSelector}>Nom</p>
 
 			<TextField
-				style={styles.input}
+				className={styles.inputSelector}
 				label="Nom"
 				type="text"
 				variant="outlined"
@@ -20,25 +21,6 @@ const SelectNameLocation = ({nameLocation, onSelectNameLocation}) => {
 			/>
 		</div>
 	);
-};
-
-const styles = {
-	title: {
-		fontSize: '1.5em',
-		fontWeight: 'bold',
-		fontStyle: 'italic'
-	},
-	input: {
-		marginTop: 20
-	},
-	container: {
-		paddingLeft: 20,
-		paddingRight: 20,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'flex-start'
-	}
 };
 
 SelectNameLocation.propTypes = {

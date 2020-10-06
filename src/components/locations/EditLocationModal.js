@@ -8,6 +8,7 @@ import SelectFishInfos from './SelectFishInfos';
 import SelectNightFishing from './SelectNightFishing';
 import SelectOtherInfos from '../generics/SelectOtherInformations';
 import SelectNameLocation from './SelectNameLocation';
+import styles from '../components.module.css';
 
 const EditLocationModal = ({selectedLocation, setSelectedLocation}) => {
 	const [step, setStep] = useState(0);
@@ -37,7 +38,7 @@ const EditLocationModal = ({selectedLocation, setSelectedLocation}) => {
 		<Dialog fullWidth open={Boolean(selectedLocation)} maxWidth="xl" onClose={() => setSelectedLocation(null)}>
 			<DialogTitle>{selectedLocation.name || 'Plan d\'eau'}</DialogTitle>
 
-			<div style={styles.content}>
+			<div className={styles.content}>
 				{ step === 0 && <SelectNameLocation nameLocation={name} onSelectNameLocation={setName}/>}
 				{ step === 1 && <SelectLocation location={location} onSelectLocation={setLocation}/>}
 				{ step === 2 && <SelectFishInfos fishInfos={fishInfos} onSelectFishInfos={setFishInfos}/>}
@@ -46,44 +47,18 @@ const EditLocationModal = ({selectedLocation, setSelectedLocation}) => {
 
 			</div>
 
-			<div style={styles.buttonsAndStepper}>
+			<div className={styles.buttonsAndStepper}>
 				<MobileStepper variant="dots" steps={5} position="static" activeStep={step}/>
-				<div style={styles.buttons}>
-					{ step === 0 ? <Button style={styles.button} onClick={() => setSelectedLocation(null)}>Annuler</Button> : <Button style={styles.button} onClick={() => setStep(step - 1)}>Précédent</Button>}
-					{ step === 4 ? <Button style={styles.button} onClick={onValidate}>Confirmer</Button> : <Button style={styles.button} onClick={() => setStep(step + 1)}>Suivant</Button>}
+				<div className={styles.buttons}>
+					{ step === 0 ? <Button className={styles.button} onClick={() => setSelectedLocation(null)}>Annuler</Button> : <Button className={styles.button} onClick={() => setStep(step - 1)}>Précédent</Button>}
+					{ step === 4 ? <Button className={styles.button} onClick={onValidate}>Confirmer</Button> : <Button className={styles.button} onClick={() => setStep(step + 1)}>Suivant</Button>}
 				</div>
 			</div>
 
-			{ displayProgress && <CircularProgress style={styles.progress}/>}
+			{ displayProgress && <CircularProgress className={styles.progress}/>}
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
 		</Dialog>
 	);
-};
-
-const styles = {
-	content: {
-		height: '50vh'
-	},
-	progress: {
-		position: 'absolute',
-		left: 'calc(50% - 20px)',
-		top: '50%'
-	},
-	buttonsAndStepper: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center'
-	},
-	buttons: {
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		alignItems: 'center',
-		paddingBottom: 10
-	},
-	button: {
-		width: '40vw'
-	}
 };
 
 EditLocationModal.propTypes = {

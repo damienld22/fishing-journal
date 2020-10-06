@@ -1,15 +1,16 @@
 import {TextField} from '@material-ui/core';
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from '../components.module.css';
 
 const SelectOtherInfos = ({otherInfos, onSelectOtherInfos}) => {
 	return (
-		<div style={styles.container}>
-			<p style={styles.title}>Autre infos</p>
+		<div className={styles.containerSelector}>
+			<p className={styles.titleSelector}>Autre infos</p>
 
 			<TextField
 				multiline
-				style={styles.input}
+				className={styles.inputSelector}
 				label="Autre infos"
 				type="text"
 				variant="outlined"
@@ -21,25 +22,6 @@ const SelectOtherInfos = ({otherInfos, onSelectOtherInfos}) => {
 			/>
 		</div>
 	);
-};
-
-const styles = {
-	title: {
-		fontSize: '1.5em',
-		fontWeight: 'bold',
-		fontStyle: 'italic'
-	},
-	input: {
-		marginTop: 20
-	},
-	container: {
-		paddingLeft: 20,
-		paddingRight: 20,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'flex-start'
-	}
 };
 
 SelectOtherInfos.propTypes = {
