@@ -22,7 +22,12 @@ const NavigationBar = () => {
 				<p>Carnet de pêche</p>
 			</Toolbar>
 
-			<Drawer className={styles.drawer} open={drawerIsOpen}>
+			<Drawer
+				variant="temporary"
+				className={styles.drawer}
+				open={drawerIsOpen}
+				onBackdropClick={() => setDrawerOpen(false)} onEscapeKeyDown={() => setDrawerOpen(false)}
+			>
 				<div className={styles.drawerPaper}>
 					<div className={styles.closeButton}>
 						<IconButton onClick={() => setDrawerOpen(false)}>
