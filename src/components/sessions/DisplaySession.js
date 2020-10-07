@@ -1,9 +1,10 @@
 import {Button, CircularProgress} from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import {getSessionWithDetails} from '../../requests';
+import {getSessionWithDetails, updateSession} from '../../requests';
 import moment from 'moment';
 import Snackbar from '../Snackbar';
+import EditableTextField from '../generics/EditableTextField';
 import styles from '../components.module.css';
 
 const calculateTotalWeight = session => {
@@ -23,9 +24,24 @@ const calculateTotalWeight = session => {
 const DisplaySession = () => {
 	const {id} = useParams();
 	const [session, setSession] = useState({});
-	const [displayProgress, setDisplayProgress] = useState(false);
+	const [displayProgress, setDisplayProgress] = useState(true);
 	const [messageSnackbar, setMessageSnackbar] = useState(null);
 	const history = useHistory();
+
+	const updateComments = comments => {
+		if (session._id) {
+			setDisplayProgress(true);
+			updateSession(session._id, {comments})
+				.then(() => {
+					setSession(previous => ({...previous, comments}));
+					setDisplayProgress(false);
+				})
+				.catch(() => {
+					setDisplayProgress(false);
+					setMessageSnackbar('Erreur lors de l\'édition des commentaires.');
+				});
+		}
+	};
 
 	useEffect(() => {
 		getSessionWithDetails(id)
@@ -41,10 +57,10 @@ const DisplaySession = () => {
 
 	return (
 		<div className={styles.containerAlignedToLeft}>
-			<p>{`Début : ${moment.unix(session.start).format('LLL')}`}</p>
-			<p>{`Fin : ${moment.unix(session.end).format('LLL')}`}</p>
-			<p>{`Zone : ${session.locationName}`}</p>
-			<p>{`Infos : ${session.otherInformations}`}</p>
+			<p className={styles.textResult}>{`Début : ${moment.unix(session.start).format('LLL')}`}</p>
+			<p className={styles.textResult}>{`Fin : ${moment.unix(session.end).format('LLL')}`}</p>
+			<p className={styles.textResult}>{`Zone : ${session.locationName}`}</p>
+			<p className={styles.textResult}>{`Infos : ${session.otherInformations}`}</p>
 
 			<div className={styles.cardWithBorder}>
 				<div className={styles.containerCardWithBorder}>
@@ -55,6 +71,10 @@ const DisplaySession = () => {
 					<p className={styles.textResult}>Poids total des prises :</p>
 					<p className={styles.textResultValue}>{calculateTotalWeight(session)} kg</p>
 				</div>
+			</div>
+
+			<div className={styles.card}>
+				<EditableTextField text={session.comments} onValidate={updateComments}/>
 			</div>
 
 			<Button className={styles.buttonCancel} onClick={() => history.goBack()}>Retour</Button>
