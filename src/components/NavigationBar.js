@@ -4,6 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import FishingIcon from '@material-ui/icons/ThumbUp';
 import LocationIcon from '@material-ui/icons/LocationOn';
+import ListIcon from '@material-ui/icons/List';
 import SessionIcon from '@material-ui/icons/Event';
 import NavigationItem from './NavigationItem';
 import {useHistory} from 'react-router-dom';
@@ -40,17 +41,29 @@ const NavigationBar = () => {
 							setDrawerOpen(false);
 							history.push('/sessions');
 						}}/>
+
 					<Divider/>
+
 					<NavigationItem
 						Icon={FishingIcon} text="Prises" onClick={() => {
 							setDrawerOpen(false);
 							history.push('/fishes');
 						}}/>
 
+					<Divider/>
+
 					<NavigationItem
 						Icon={LocationIcon} text="Plans / cours d'eau" onClick={() => {
 							setDrawerOpen(false);
 							history.push('/locations');
+						}}/>
+
+					<Divider/>
+
+					<NavigationItem
+						Icon={ListIcon} text="Liste" onClick={() => {
+							setDrawerOpen(false);
+							history.push('/list');
 						}}/>
 
 				</div>

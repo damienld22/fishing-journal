@@ -9,6 +9,7 @@ const LocationsPage = lazy(() => import('./components/locations/Locations'));
 const SessionsPage = lazy(() => import('./components/sessions/Sessions'));
 const NavigationBar = lazy(() => import('./components/NavigationBar'));
 const DisplaySession = lazy(() => import('./components/sessions/DisplaySession'));
+const ListPage = lazy(() => import('./components/list/List'));
 
 moment.locale('fr', localization);
 
@@ -32,6 +33,9 @@ const App = () => (
 							</Route>
 							<Route path="/sessions/:id">
 								<DisplaySession/>
+							</Route>
+							<Route exact path="/list">
+								<ListPage/>
 							</Route>
 							<Route exact path="/">
 								<Redirect to="/sessions"/>
