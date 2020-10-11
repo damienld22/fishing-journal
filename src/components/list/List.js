@@ -21,14 +21,14 @@ const List = () => {
 			.then(({data}) => {
 				setList(data || {});
 				if (data && data.elements) {
-					data.elements.forEach(elt => {
-						setAvailableCategories(previous => {
-							if (!previous.includes(elt.category)) {
-								return [...previous, elt.category];
+					setAvailableCategories(previous => {
+						const newCategories = [...previous];
+						data.elements.forEach(elt => {
+							if (!newCategories.includes(elt.category)) {
+								newCategories.push(elt.category);
 							}
-
-							return elt;
 						});
+						return newCategories;
 					});
 				}
 
