@@ -34,7 +34,7 @@ const List = () => {
 				setMessageSnackbar('Erreur lors de la récupération de la liste.');
 				setDisplayProgress(false);
 			});
-	}, []);
+	}, [availableCategories]);
 
 	const handleSave = () => {
 		updateList(list)
