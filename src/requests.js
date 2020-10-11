@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// Const API_URL = 'https://241.ip-92-222-68.eu';
-const API_URL = 'http://localhost:3001';
+const API_URL = 'https://241.ip-92-222-68.eu';
 
 /**
  * ======================================
