@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import {Paper, CircularProgress, Button} from '@material-ui/core';
+import {CircularProgress, Button} from '@material-ui/core';
 import CreateListItemModal from './CreateListItemModal';
 import SortedList from './SortedList';
 import {getList, updateList} from '../../requests';
@@ -22,9 +22,13 @@ const List = () => {
 				setList(data || {});
 				if (data && data.elements) {
 					data.elements.forEach(elt => {
-						if (!availableCategories.includes(elt.category)) {
-							availableCategories.push(elt.category);
-						}
+						setAvailableCategories(previous => {
+							if (!previous.includes(elt.category)) {
+								return [...previous, elt.category];
+							}
+
+							return elt;
+						});
 					});
 				}
 
@@ -34,7 +38,7 @@ const List = () => {
 				setMessageSnackbar('Erreur lors de la récupération de la liste.');
 				setDisplayProgress(false);
 			});
-	}, [availableCategories]);
+	}, []);
 
 	const handleSave = () => {
 		updateList(list)
@@ -92,12 +96,12 @@ const List = () => {
 
 			<Button className={styles.saveButton} onClick={handleSave}>Enregistrer</Button>
 
-			<Paper className={styles.scrollList}>
+			<div className={styles.scrollList}>
 				{ list && list.elements && <SortedList
 					sortedItems={sortElementsByCategory(list.elements)}
 					handleChangeCheckbox={handleChangeCheckbox}
 					handleDeleteItem={handleDeleteItem}/>}
-			</Paper>
+			</div>
 
 			<CreateListItemModal availableCategories={availableCategories} isOpen={addItemModalOpen} onCancel={() => setAddItemModalOpen(false)} onNewItem={onNewItem}/>
 

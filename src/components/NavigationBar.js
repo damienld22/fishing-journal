@@ -15,7 +15,7 @@ const NavigationBar = () => {
 	const history = useHistory();
 
 	return (
-		<AppBar position="static">
+		<AppBar position="sticky">
 			<Toolbar>
 				<IconButton className={styles.menuIcon} edge="start" onClick={() => setDrawerOpen(true)}>
 					<MenuIcon/>

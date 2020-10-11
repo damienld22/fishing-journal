@@ -9,7 +9,7 @@ const FishItem = ({fish, onClick}) => {
 	moment().locale('fr', localization);
 
 	return (
-		<Card className={styles.card} onClick={onClick}>
+		<Card raised className={styles.card} onClick={onClick}>
 			<CardContent className={styles.cardContent}>
 				{fish.picture ? <img alt="catch" height={50} src={fish.picture}/> : <p>/</p>}
 				<p>{fish.weight ? `${fish.weight} kg` : '/'}</p>

@@ -54,7 +54,7 @@
 }
 
 .addButton {
-  position: absolute;
+  position: fixed;
   bottom: 10%;
   right: 10%;
   background-color: blue;
@@ -62,10 +62,10 @@
 }
 
 .scrollList {
-  min-height: 75vh;
-  max-height: 75vh;
+  height: 100%;
   width: 100%;
   overflow: auto;
+  padding-bottom: 100px;
 }
 
 .card {
@@ -74,6 +74,7 @@
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 .cardContent {

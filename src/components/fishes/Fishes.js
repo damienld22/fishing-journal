@@ -5,7 +5,7 @@ import CreateFishModal from './CreateFishModal';
 import {getFishCatch} from '../../requests';
 import Snackbar from '../Snackbar';
 import FishItem from './FishItem';
-import {List, Paper, CircularProgress} from '@material-ui/core';
+import {List, CircularProgress} from '@material-ui/core';
 import EditFishModal from './EditFishModal';
 import styles from '../components.module.css';
 
@@ -35,7 +35,7 @@ const Fishes = () => {
 		<div className={styles.container}>
 			<h1>Liste des prises</h1>
 
-			<Paper className={styles.scrollList}>
+			<div className={styles.scrollList}>
 				<List>
 					{
 						fishes.map(fish => (
@@ -43,7 +43,7 @@ const Fishes = () => {
 						))
 					}
 				</List>
-			</Paper>
+			</div>
 
 			<IconButton className={styles.addButton} onClick={() => setCreateFishModalIsOpen(true)}>
 				<AddIcon/>

@@ -3,7 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import {getSessions, getLocations} from '../../requests';
 import Snackbar from '../Snackbar';
-import {List, Paper, CircularProgress} from '@material-ui/core';
+import {List, CircularProgress} from '@material-ui/core';
 import SessionItem from './SessionItem';
 import CreateSessionModal from './CreateSessionModal';
 import EditSessionModal from './EditSessionModal';
@@ -48,7 +48,7 @@ const Sessions = () => {
 		<div className={styles.container}>
 			<h1>Sessions</h1>
 
-			<Paper className={styles.scrollList}>
+			<div className={styles.scrollList}>
 				<List>
 					{
 						sessions.map(session => (
@@ -62,7 +62,7 @@ const Sessions = () => {
 						))
 					}
 				</List>
-			</Paper>
+			</div>
 
 			<IconButton className={styles.addButton} onClick={() => setCreateSessionModalIsOpen(true)}>
 				<AddIcon/>

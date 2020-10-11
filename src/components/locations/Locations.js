@@ -6,7 +6,7 @@ import EditLocationModal from './EditLocationModal';
 import {getLocations} from '../../requests';
 import Snackbar from '../Snackbar';
 import LocationItem from './LocationItem';
-import {List, Paper, CircularProgress} from '@material-ui/core';
+import {List, CircularProgress} from '@material-ui/core';
 import styles from '../components.module.css';
 
 const Locations = () => {
@@ -39,7 +39,7 @@ const Locations = () => {
 		<div className={styles.container}>
 			<h1>Zones de pêche</h1>
 
-			<Paper className={styles.scrollList}>
+			<div className={styles.scrollList}>
 				<List>
 					{
 						locations.map(location => (
@@ -47,7 +47,7 @@ const Locations = () => {
 						))
 					}
 				</List>
-			</Paper>
+			</div>
 
 			<IconButton className={styles.addButton} onClick={() => setCreateLocationModalIsOpen(true)}>
 				<AddIcon/>

@@ -32,7 +32,7 @@ const LocationItem = ({location, onClick, onDeleteDone}) => {
 
 	return (
 		<>
-			<Card className={styles.card} onClick={onClick}>
+			<Card raised className={styles.card} onClick={onClick}>
 				<CardContent className={styles.cardContent}>
 					<p>{location.name || '/'}</p>
 
