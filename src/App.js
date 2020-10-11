@@ -1,52 +1,75 @@
-import React, {lazy, Suspense} from 'react';
+import React, {lazy, Suspense, useState} from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import moment from 'moment';
 import localization from 'moment/locale/fr';
 import {StylesProvider} from '@material-ui/core/styles';
+import Snackbar from './components/Snackbar';
 const FishesPage = lazy(() => import('./components/fishes/Fishes'));
 const LocationsPage = lazy(() => import('./components/locations/Locations'));
 const SessionsPage = lazy(() => import('./components/sessions/Sessions'));
 const NavigationBar = lazy(() => import('./components/NavigationBar'));
 const DisplaySession = lazy(() => import('./components/sessions/DisplaySession'));
 const ListPage = lazy(() => import('./components/list/List'));
+const LoginPage = lazy(() => import('./components/authentification/Login'));
+const SignUpPage = lazy(() => import('./components/authentification/SignUp'));
 
 moment.locale('fr', localization);
 
-const App = () => (
-	<StylesProvider injectFirst>
-
-		<Router>
-			<Suspense fallback={<div>Loading...</div>}>
-				<NavigationBar/>
-				<Switch>
-					<>
-						<div style={{padding: 10}}>
-							<Route exact path="/fishes">
-								<FishesPage/>
-							</Route>
-							<Route exact path="/locations">
-								<LocationsPage/>
-							</Route>
-							<Route exact path="/sessions">
-								<SessionsPage/>
-							</Route>
-							<Route path="/sessions/:id">
-								<DisplaySession/>
-							</Route>
-							<Route exact path="/list">
-								<ListPage/>
-							</Route>
-							<Route exact path="/">
-								<Redirect to="/sessions"/>
-							</Route>
-						</div>
-					</>
-				</Switch>
-			</Suspense>
-
-		</Router>
-	</StylesProvider>
+const PrivateRoute = ({component: Component, ...rest}) => (
+	<Route
+		{...rest} render={props => (
+			localStorage.getItem('access_token') ?
+				<Component {...props}/> :
+				<Redirect to="/login"/>
+		)}/>
 );
+
+PrivateRoute.propTypes = {
+	component: PropTypes.object
+};
+
+const App = () => {
+	const [connected, setConnected] = useState(Boolean(localStorage.getItem('access_token')));
+	const [messageSnackbar, setMessageSnackbar] = useState(null);
+
+	const onAccountCreated = () => {
+		setMessageSnackbar('Votre compte est créé, vous pouvez vous connecter');
+	};
+
+	return (
+		<StylesProvider injectFirst>
+			<Router>
+				<Suspense fallback={<div>Loading...</div>}>
+					<NavigationBar isConnected={connected} onLogout={() => setConnected(false)}/>
+					<Switch>
+						<>
+							<div style={{padding: 10}}>
+								<PrivateRoute exact path="/fishes" component={FishesPage}/>
+								<PrivateRoute exact path="/locations" component={LocationsPage}/>
+								<PrivateRoute exact path="/sessions" component={SessionsPage}/>
+								<PrivateRoute exact path="/sessions/:id" component={DisplaySession}/>
+								<PrivateRoute exact path="/list" component={ListPage}/>
+								<Route exact path="/login">
+									<LoginPage onConnection={() => setConnected(true)} onLogout={() => setConnected(false)}/>
+								</Route>
+								<Route exact path="/sign-up">
+									<SignUpPage onAccountCreated={onAccountCreated}/>
+								</Route>
+								<Route exact path="/">
+									{ localStorage.getItem('access_token') ? <Redirect to="/sessions"/> : <Redirect to="/login"/>}
+								</Route>
+							</div>
+						</>
+					</Switch>
+				</Suspense>
+
+			</Router>
+
+			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
+		</StylesProvider>
+	);
+};
 
 export default App;

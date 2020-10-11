@@ -4,6 +4,13 @@
   align-items: center;
 }
 
+.authContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5vh;
+}
+
 .containerAlignedToLeft {
   display: flex;
   flex-direction: column;
@@ -42,6 +49,11 @@
 .saveButton {
   width: 40vw;
   align-self: flex-end;
+}
+
+.secondaryButton {
+  margin-top: 5px;
+  font-size: 0.8em;
 }
 
 .buttonCancel {

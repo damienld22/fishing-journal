@@ -50,7 +50,8 @@
     "global": [
       "document",
       "FileReader",
-      "navigator"
+      "navigator",
+      "localStorage"
     ],
     "rules": {
       "unicorn/filename-case": "off",
