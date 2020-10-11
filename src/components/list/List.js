@@ -41,9 +41,10 @@ const List = () => {
 	}, []);
 
 	const handleSave = () => {
+		setDisplayProgress(true);
 		updateList(list)
 			.then(() => {
-				setDisplayProgress(true);
+				setDisplayProgress(false);
 				setMessageSnackbar('La liste a été mise à jour.');
 			})
 			.catch(() => {
