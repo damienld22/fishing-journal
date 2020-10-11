@@ -80,3 +80,18 @@ export async function updateSession(id, session) {
 		headers: {'Content-Type': 'application/json'}
 	});
 }
+
+/**
+ * ======================================
+ *  List
+ * ======================================
+ */
+export async function updateList(list) {
+	return axios.post(API_URL + '/list', list, {
+		headers: {'Content-Type': 'application/json'}
+	});
+}
+
+export async function getList() {
+	return axios.get(API_URL + '/list');
+}

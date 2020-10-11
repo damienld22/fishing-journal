@@ -39,6 +39,11 @@
   width: 40vw;
 }
 
+.saveButton {
+  width: 40vw;
+  align-self: flex-end;
+}
+
 .buttonCancel {
   width: 40vw;
   margin: auto;
@@ -147,4 +152,19 @@
   margin-bottom: 10px !important;
   font-weight: bold;
   text-align: center;
+}
+
+.accordionDetailsList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.accordionItemWithDelete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }

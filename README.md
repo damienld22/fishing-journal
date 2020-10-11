@@ -2,6 +2,6 @@
 
 ## To do
 
-- [ ] Détails des sessions avec date / emplacement / infos / nombre de poissons
-- [ ] Sessions -> Ajout des ratés (affichage ratio) 
+- [ ] Mettre en place une pagination sur la liste des poissons
+- [ ] Ajout d'une authentification + séparation des données par utilisateur
 
