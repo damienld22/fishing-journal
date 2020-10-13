@@ -12,6 +12,7 @@ const SessionsPage = lazy(() => import('./components/sessions/Sessions'));
 const NavigationBar = lazy(() => import('./components/NavigationBar'));
 const DisplaySession = lazy(() => import('./components/sessions/DisplaySession'));
 const ListPage = lazy(() => import('./components/list/List'));
+const ReferencesPage = lazy(() => import('./components/references/References'));
 const LoginPage = lazy(() => import('./components/authentification/Login'));
 const SignUpPage = lazy(() => import('./components/authentification/SignUp'));
 
@@ -51,6 +52,7 @@ const App = () => {
 								<PrivateRoute exact path="/sessions" component={SessionsPage}/>
 								<PrivateRoute exact path="/sessions/:id" component={DisplaySession}/>
 								<PrivateRoute exact path="/list" component={ListPage}/>
+								<PrivateRoute exact path="/references" component={ReferencesPage}/>
 								<Route exact path="/login">
 									<LoginPage onConnection={() => setConnected(true)} onLogout={() => setConnected(false)}/>
 								</Route>

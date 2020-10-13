@@ -6,6 +6,7 @@ import FishingIcon from '@material-ui/icons/ThumbUp';
 import LocationIcon from '@material-ui/icons/LocationOn';
 import LogoutIcon from '@material-ui/icons/ExitToApp';
 import ListIcon from '@material-ui/icons/List';
+import ReferencesIcon from '@material-ui/icons/AttachFile';
 import SessionIcon from '@material-ui/icons/Event';
 import NavigationItem from './NavigationItem';
 import {useHistory} from 'react-router-dom';
@@ -76,6 +77,14 @@ const NavigationBar = ({isConnected, onLogout}) => {
 						Icon={LocationIcon} text="Plans / cours d'eau" onClick={() => {
 							setDrawerOpen(false);
 							history.push('/locations');
+						}}/>
+
+					<Divider/>
+
+					<NavigationItem
+						Icon={ReferencesIcon} text="Mes références" onClick={() => {
+							setDrawerOpen(false);
+							history.push('/references');
 						}}/>
 
 					<Divider/>

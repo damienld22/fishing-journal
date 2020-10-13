@@ -2,4 +2,8 @@
 
 ## To do
 
-- [ ] Mettre en place une pagination sur les scroll list avec tri (notamment pour la liste des captures)
+- [ ] Infinite scroll avec sort
+- [ ] Afficher les poissons d'une session
+- [ ] Afficher les photos en plein écran
+- [ ] Liste de course
+- [ ] Montages avec lien pour le faire + association avec prise + nombre de poisson par montage

@@ -151,6 +151,45 @@ export async function getList() {
 
 /**
  * ======================================
+ *  References
+ * ======================================
+ */
+export async function getReferences() {
+	return axios.get(API_URL + '/references', {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+}
+
+export async function createReference(reference) {
+	return axios.post(API_URL + '/references', reference, {
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+}
+
+export async function deleteReference(id) {
+	return axios.delete(API_URL + '/references/' + id, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+}
+
+export async function updateReference(id, reference) {
+	return axios.put(API_URL + '/references/' + id, reference, {
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+}
+
+/**
+ * ======================================
  *  Authentication
  * ======================================
  */
