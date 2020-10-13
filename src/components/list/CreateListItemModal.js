@@ -10,16 +10,23 @@ const CreateListItemModal = ({isOpen, onCancel, onNewItem, availableCategories})
 
 	const onHandleCancel = () => {
 		setName(null);
-		setCategory(null);
+		setCategory('other');
 		setNewCategory(null);
 		onCancel();
 	};
 
+	const canValidate = () => {
+		const hasNewCategory = category === 'other' && newCategory && newCategory.length > 0;
+		const hasItemName = name && name.length > 0;
+		const hasExistingCategory = category !== 'other' && category && category.length > 0;
+		return hasItemName && (hasExistingCategory || hasNewCategory);
+	};
+
 	const onValidate = () => {
-		onNewItem({name, category: category === 'other' ? newCategory : category});
 		setName(null);
-		setCategory(null);
+		setCategory('other');
 		setNewCategory(null);
+		onNewItem({name, category: category === 'other' ? newCategory : category});
 	};
 
 	return (
@@ -73,7 +80,7 @@ const CreateListItemModal = ({isOpen, onCancel, onNewItem, availableCategories})
 
 			<div className={styles.buttons}>
 				<Button className={styles.button} onClick={onHandleCancel}>Annuler</Button>
-				<Button className={styles.button} onClick={onValidate}>Ajouter</Button>
+				<Button disabled={!canValidate()} className={styles.button} onClick={onValidate}>Ajouter</Button>
 			</div>
 		</Dialog>
 	);
