@@ -3,6 +3,7 @@ import {Card, CardContent} from '@material-ui/core';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import localization from 'moment/locale/fr';
+import FullScreenPicture from '../generics/FullScreenPicture';
 import styles from '../components.module.css';
 
 const FishItem = ({fish, onClick}) => {
@@ -11,7 +12,7 @@ const FishItem = ({fish, onClick}) => {
 	return (
 		<Card raised className={styles.card} onClick={onClick}>
 			<CardContent className={styles.cardContent}>
-				{fish.picture ? <img alt="catch" height={50} src={fish.picture}/> : <p>/</p>}
+				{fish.picture ? <FullScreenPicture alt="catch" height={50} src={fish.picture}/> : <p>/</p>}
 				<p>{fish.weight ? `${fish.weight} kg` : '/'}</p>
 				<p>{fish.catchDate ? moment.unix(fish.catchDate).format('lll') : '/'}</p>
 			</CardContent>

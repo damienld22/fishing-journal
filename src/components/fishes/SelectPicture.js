@@ -2,6 +2,7 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import PublishIcon from '@material-ui/icons/Publish';
 import PropTypes from 'prop-types';
+import FullScreenPicture from '../generics/FullScreenPicture';
 import styles from '../components.module.css';
 
 const SelectPicture = ({onSelectPicture, picture}) => {
@@ -24,7 +25,7 @@ const SelectPicture = ({onSelectPicture, picture}) => {
 				</label>
 			</div>
 
-			{ picture && <img alt="Current catch" src={picture} height={100}/>}
+			{ picture && <FullScreenPicture alt="Current catch" src={picture} height={100}/>}
 		</div>
 	);
 };
