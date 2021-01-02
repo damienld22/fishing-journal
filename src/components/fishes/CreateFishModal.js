@@ -26,13 +26,13 @@ const CreateFishModal = ({isOpen, setState}) => {
 		createFishCatch({weight: Number.parseFloat(weight, 10), catchDate: date, bait, place}, picture)
 			.then(() => {
 				setDisplayProgress(false);
-				setState(false);
 				setStep(0);
 				setPicture(null);
 				setWeight(null);
 				setDate(moment().unix());
 				setBait(null);
 				setPlace(null);
+				setState(false);
 			})
 			.catch(() => {
 				setMessageSnackbar('La sauvegarde de la capture a échouée.');
