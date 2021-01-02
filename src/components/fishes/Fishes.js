@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import CreateFishModal from './CreateFishModal';
-import {getFishCatch} from '../../requests';
+import {getFishCatch, deleteFishCatch} from '../../requests';
 import Snackbar from '../Snackbar';
 import FishItem from './FishItem';
 import {List, CircularProgress} from '@material-ui/core';
@@ -15,6 +15,19 @@ const Fishes = () => {
 	const [selectedFish, setSelectedFish] = useState(null);
 	const [displayProgress, setDisplayProgress] = useState(false);
 	const [messageSnackbar, setMessageSnackbar] = useState(null);
+
+	const handleDeleteFishItem = fish => {
+		setDisplayProgress(true);
+		deleteFishCatch(fish._id)
+			.then(() => {
+				setFishes(previous => previous.filter(elt => elt._id !== fish._id));
+				setDisplayProgress(false);
+			})
+			.catch(() => {
+				setMessageSnackbar('Erreur lors de la suppression de la capture.');
+				setDisplayProgress(false);
+			});
+	};
 
 	useEffect(() => {
 		if (!createFishModalIsOpen || !selectedFish) {
@@ -39,7 +52,11 @@ const Fishes = () => {
 				<List>
 					{
 						fishes.map(fish => (
-							<FishItem key={fish._id} fish={fish} onClick={() => setSelectedFish(fish)}/>
+							<FishItem
+								key={fish._id}
+								fish={fish}
+								onClick={() => setSelectedFish(fish)}
+								onDeleteItem={handleDeleteFishItem}/>
 						))
 					}
 				</List>

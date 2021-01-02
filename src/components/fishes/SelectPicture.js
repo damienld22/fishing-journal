@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import PublishIcon from '@material-ui/icons/Publish';
 import PropTypes from 'prop-types';
@@ -6,10 +6,14 @@ import FullScreenPicture from '../generics/FullScreenPicture';
 import styles from '../components.module.css';
 
 const SelectPicture = ({onSelectPicture, picture}) => {
+	const [toDisplayPicture, setToDisplayPicture] = useState(picture);
+
 	const handleCapture = ({target}) => {
+		onSelectPicture(target.files[0]);
+
 		const fileReader = new FileReader();
 		fileReader.readAsDataURL(target.files[0]);
-		fileReader.addEventListener('load', event => onSelectPicture(event.target.result));
+		fileReader.addEventListener('load', event => setToDisplayPicture(event.target.result));
 	};
 
 	return (
@@ -25,7 +29,8 @@ const SelectPicture = ({onSelectPicture, picture}) => {
 				</label>
 			</div>
 
-			{ picture && <FullScreenPicture alt="Current catch" src={picture} height={100}/>}
+			{/* { picture && <FullScreenPicture alt="Current catch" src={join(API_URL, picture)} height={100}/>} */}
+			{ picture && <FullScreenPicture alt="Current catch" src={toDisplayPicture} height={100}/>}
 		</div>
 	);
 };

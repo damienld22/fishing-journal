@@ -42,7 +42,7 @@ const List = () => {
 
 	const handleSave = () => {
 		setDisplayProgress(true);
-		updateList(list)
+		updateList(Object.assign({}, list))
 			.then(() => {
 				setDisplayProgress(false);
 				setMessageSnackbar('La liste a été mise à jour.');

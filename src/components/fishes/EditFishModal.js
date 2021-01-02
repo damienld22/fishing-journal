@@ -12,6 +12,7 @@ import {updateFishCatch} from '../../requests';
 import styles from '../components.module.css';
 
 const EditFishModal = ({selectedFish, setSelectedFish}) => {
+	const currentPicture = selectedFish.picture;
 	const [step, setStep] = useState(0);
 	const [picture, setPicture] = useState(selectedFish.picture);
 	const [weight, setWeight] = useState(selectedFish.weight);
@@ -24,7 +25,8 @@ const EditFishModal = ({selectedFish, setSelectedFish}) => {
 	const onValidate = () => {
 		setDisplayProgress(true);
 
-		updateFishCatch(selectedFish._id, {picture, weight: Number.parseFloat(weight, 10), catchDate: date, bait, place})
+		const newPicture = currentPicture === picture ? null : picture;
+		updateFishCatch(selectedFish._id, {picture, weight: Number.parseFloat(weight, 10), catchDate: date, bait, place}, newPicture)
 			.then(() => {
 				setDisplayProgress(false);
 				setSelectedFish(null);

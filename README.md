@@ -1,5 +1,4 @@
 # Fishing journal
-
 ## To do
 
 - [ ] Infinite scroll avec sort

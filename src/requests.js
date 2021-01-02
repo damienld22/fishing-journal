@@ -1,14 +1,27 @@
 import axios from 'axios';
+import urljoin from 'url-join';
 
-const API_URL = 'https://241.ip-92-222-68.eu';
+// Export const API_URL = 'https://241.ip-92-222-68.eu';
+export const API_URL = 'http://localhost:3000';
 
 /**
  * ======================================
  *  Fishes
  * ======================================
  */
-export async function createFishCatch(fish) {
-	return axios.post(API_URL + '/fishes', fish, {
+export async function createFishCatch(fish, picture) {
+	// Upload the picture
+	const formData = new FormData();
+	formData.append('file', picture);
+	const {data: uploadResponse} = await axios.post(API_URL + '/fishes/picture', formData, {
+		headers: {
+			'content-type': 'multipart/form-data',
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+
+	const fishWithPicture = Object.assign({}, fish, {picture: urljoin(API_URL, uploadResponse.data.filename)});
+	return axios.post(API_URL + '/fishes', fishWithPicture, {
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -24,8 +37,22 @@ export async function getFishCatch() {
 	});
 }
 
-export async function updateFishCatch(id, fish) {
-	return axios.put(API_URL + '/fishes/' + id, fish, {
+export async function updateFishCatch(id, fish, newPicture) {
+	let newFish = fish;
+	if (newPicture) {
+		// Upload the picture
+		const formData = new FormData();
+		formData.append('file', newPicture);
+		const {data: uploadResponse} = await axios.post(API_URL + '/fishes/picture', formData, {
+			headers: {
+				'content-type': 'multipart/form-data',
+				Authorization: `Bearer ${localStorage.getItem('access_token')}`
+			}
+		});
+		newFish = Object.assign({}, fish, {picture: urljoin(API_URL, uploadResponse.data.filename)});
+	}
+
+	return axios.put(API_URL + '/fishes/' + id, newFish, {
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${localStorage.getItem('access_token')}`

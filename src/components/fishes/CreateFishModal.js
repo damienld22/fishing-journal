@@ -23,7 +23,7 @@ const CreateFishModal = ({isOpen, setState}) => {
 
 	const onValidate = () => {
 		setDisplayProgress(true);
-		createFishCatch({picture, weight: Number.parseFloat(weight, 10), catchDate: date, bait, place})
+		createFishCatch({weight: Number.parseFloat(weight, 10), catchDate: date, bait, place}, picture)
 			.then(() => {
 				setDisplayProgress(false);
 				setState(false);
