@@ -1,7 +1,8 @@
 import axios from 'axios';
 import urljoin from 'url-join';
 
-export const API_URL = 'https://241.ip-92-222-68.eu';
+// Export const API_URL = 'https://241.ip-92-222-68.eu';
+export const API_URL = 'http://localhost:3000';
 
 /**
  * ======================================

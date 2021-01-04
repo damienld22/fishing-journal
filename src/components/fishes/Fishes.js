@@ -55,7 +55,8 @@ const Fishes = () => {
 							<FishItem
 								key={fish._id}
 								fish={fish}
-								onClick={() => setSelectedFish(fish)}
+								onClick={() => {}}
+								onEdit={() => setSelectedFish(fish)}
 								onDeleteItem={handleDeleteFishItem}/>
 						))
 					}
