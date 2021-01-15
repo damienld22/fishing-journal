@@ -23,7 +23,7 @@ const FishItem = ({fish, onClick, onDeleteItem, onEdit}) => {
 		<Card raised className={styles.card} onClick={onClick}>
 			<CardContent className={styles.cardContent}>
 				{fish.picture ? <FullScreenPicture alt="catch" height={50} src={fish.picture}/> : <p>/</p>}
-				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+				<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: '0.8em'}}>
 					<p style={{margin: 0}}>{fish.weight ? `${fish.weight} kg` : '/'}</p>
 					<p style={{margin: 0}}>{fish.catchDate ? moment.unix(fish.catchDate).format('lll') : '/'}</p>
 				</div>
