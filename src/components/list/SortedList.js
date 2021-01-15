@@ -15,7 +15,7 @@ const SortedList = ({sortedItems, handleChangeCheckbox, handleDeleteItem}) => {
 	const onHandleChangeCheckbox = (elt, checked) => {
 		const newItems = [...items];
 		const category = newItems.find(item => item.category === elt.category);
-		const properElement = category.elements.find(element => element.id === elt.id);
+		const properElement = category.elements.find(element => element._id === elt._id);
 		properElement.checked = checked;
 
 		setItems(newItems);
@@ -25,7 +25,7 @@ const SortedList = ({sortedItems, handleChangeCheckbox, handleDeleteItem}) => {
 	const onDeleteItem = elt => {
 		const newItems = [...items];
 		const category = newItems.find(item => item.category === elt.category);
-		category.elements = category.elements.filter(element => element.id !== elt.id);
+		category.elements = category.elements.filter(element => element._id !== elt._id);
 		setItems(newItems);
 		handleDeleteItem(elt);
 	};
@@ -37,7 +37,7 @@ const SortedList = ({sortedItems, handleChangeCheckbox, handleDeleteItem}) => {
 				<AccordionDetails>
 					<div className={styles.accordionDetailsList}>
 						{ item.elements.map(elt => (
-							<div key={elt.id} className={styles.accordionItemWithDelete}>
+							<div key={elt._id} className={styles.accordionItemWithDelete}>
 								<FormControlLabel
 									control={<Checkbox
 										checked={elt.checked}

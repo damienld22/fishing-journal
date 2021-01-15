@@ -54,7 +54,7 @@ const List = () => {
 	};
 
 	const handleChangeCheckbox = (item, checked) => {
-		const indexElt = list.elements.findIndex(elt => elt.id === item.id);
+		const indexElt = list.elements.findIndex(elt => elt._id === item._id);
 
 		if (indexElt > -1) {
 			const newElts = [...list.elements];
@@ -69,7 +69,7 @@ const List = () => {
 
 	const handleDeleteItem = item => {
 		const newList = Object.assign(list);
-		newList.elements = newList.elements.filter(elt => elt.id !== item.id);
+		newList.elements = newList.elements.filter(elt => elt._id !== item._id);
 		setList(newList);
 	};
 
