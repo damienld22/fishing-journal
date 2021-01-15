@@ -8,8 +8,10 @@ import FishItem from './FishItem';
 import {List, CircularProgress} from '@material-ui/core';
 import EditFishModal from './EditFishModal';
 import styles from '../components.module.css';
+import {useHistory} from 'react-router-dom';
 
 const Fishes = () => {
+	const history = useHistory();
 	const [createFishModalIsOpen, setCreateFishModalIsOpen] = useState(false);
 	const [fishes, setFishes] = useState([]);
 	const [selectedFish, setSelectedFish] = useState(null);
@@ -55,7 +57,7 @@ const Fishes = () => {
 							<FishItem
 								key={fish._id}
 								fish={fish}
-								onClick={() => {}}
+								onClick={() => history.push('/fishes/display', {fish})}
 								onEdit={() => setSelectedFish(fish)}
 								onDeleteItem={handleDeleteFishItem}/>
 						))
