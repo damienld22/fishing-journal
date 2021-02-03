@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {IconButton} from '@material-ui/core';
+import {IconButton, Button} from '@material-ui/core';
 import BackIcon from '@material-ui/icons/ArrowBack';
 import {useHistory} from 'react-router-dom';
 import DisplayLocationMarker from '../../components/locations/DisplayLocationMarker';
@@ -19,6 +19,8 @@ const DisplayLocation = ({location}) => {
 			</div>
 
 			<p className="locationName">{loc.name}</p>
+
+			<Button variant="contained" color="primary" onClick={() => history.push(`/stations/${loc._id}`)}>Mes postes</Button>
 
 			<div className="locationMarker">
 				<DisplayLocationMarker location={loc.location}/>

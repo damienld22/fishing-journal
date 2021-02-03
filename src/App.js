@@ -17,6 +17,7 @@ const LoginPage = lazy(() => import('./components/authentification/Login'));
 const SignUpPage = lazy(() => import('./components/authentification/SignUp'));
 const DisplayFish = lazy(() => import('./pages/DisplayFish/DisplayFish'));
 const DisplayLocation = lazy(() => import('./pages/DisplayLocation/DisplayLocation'));
+const ListStations = lazy(() => import('./pages/ListStations/ListStations'));
 
 moment.locale('fr', localization);
 
@@ -57,6 +58,7 @@ const App = () => {
 								<PrivateRoute exact path="/sessions/:id" component={DisplaySession}/>
 								<PrivateRoute exact path="/list" component={ListPage}/>
 								<PrivateRoute exact path="/references" component={ReferencesPage}/>
+								<PrivateRoute exact path="/stations/:location" component={ListStations}/>
 								<Route exact path="/login">
 									<LoginPage onConnection={() => setConnected(true)} onLogout={() => setConnected(false)}/>
 								</Route>
