@@ -107,6 +107,74 @@ export async function updateLocation(id, location) {
 
 /**
  * ======================================
+ *  Stations
+ * ======================================
+ */
+export async function getStationsByLocation(location) {
+	return axios.get(API_URL + '/stations', {
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		},
+		params: {
+			location
+		}
+	});
+}
+
+export async function createStation(station, picture) {
+	// Upload the picture
+	const formData = new FormData();
+	formData.append('file', picture);
+	const {data: uploadResponse} = await axios.post(API_URL + '/stations/picture', formData, {
+		headers: {
+			'content-type': 'multipart/form-data',
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+
+	const stationWithPicture = Object.assign({}, station, {picture: urljoin(API_URL, uploadResponse.data.filename)});
+	return axios.post(API_URL + '/stations', stationWithPicture, {
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+}
+
+export async function deleteStation(id) {
+	return axios.delete(API_URL + '/stations/' + id, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+}
+
+export async function updateStation(id, station, newPicture) {
+	let newStation = station;
+	if (newPicture) {
+		// Upload the picture
+		const formData = new FormData();
+		formData.append('file', newPicture);
+		const {data: uploadResponse} = await axios.post(API_URL + '/stations/picture', formData, {
+			headers: {
+				'content-type': 'multipart/form-data',
+				Authorization: `Bearer ${localStorage.getItem('access_token')}`
+			}
+		});
+		newStation = Object.assign({}, station, {picture: urljoin(API_URL, uploadResponse.data.filename)});
+	}
+
+	return axios.put(API_URL + '/stations/' + id, newStation, {
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+}
+
+/**
+ * ======================================
  *  Sessions
  * ======================================
  */

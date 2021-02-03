@@ -10,3 +10,11 @@
   justify-content: flex-start;
   align-self: flex-start;
 }
+
+.addButton {
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  background-color: blue;
+  color: white;
+}
