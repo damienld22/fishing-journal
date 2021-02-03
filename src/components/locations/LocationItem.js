@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Card, CardContent} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import TrashIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,7 +14,7 @@ import {deleteLocation} from '../../requests';
 import Snackbar from '../Snackbar';
 import styles from '../components.module.css';
 
-const LocationItem = ({location, onClick, onDeleteDone}) => {
+const LocationItem = ({location, onClick, onDeleteDone, onEdit}) => {
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 	const [messageSnackbar, setMessageSnackbar] = useState(null);
 
@@ -36,14 +37,26 @@ const LocationItem = ({location, onClick, onDeleteDone}) => {
 				<CardContent className={styles.cardContent}>
 					<p>{location.name || '/'}</p>
 
-					<IconButton onClick={evt => {
-						evt.preventDefault();
-						evt.stopPropagation();
-						setDeleteModalOpen(true);
-					}}
-					>
-						<TrashIcon/>
-					</IconButton>
+					<div>
+						<IconButton
+							style={{margin: 0, padding: 5}} onClick={evt => {
+								evt.preventDefault();
+								evt.stopPropagation();
+								onEdit();
+							}}
+						>
+							<EditIcon/>
+						</IconButton>
+						<IconButton
+							style={{margin: 0, padding: 5}} onClick={evt => {
+								evt.preventDefault();
+								evt.stopPropagation();
+								setDeleteModalOpen(true);
+							}}
+						>
+							<TrashIcon/>
+						</IconButton>
+					</div>
 				</CardContent>
 			</Card>
 
@@ -72,6 +85,7 @@ const LocationItem = ({location, onClick, onDeleteDone}) => {
 LocationItem.propTypes = {
 	location: PropTypes.object,
 	onClick: PropTypes.func.isRequired,
+	onEdit: PropTypes.func.isRequired,
 	onDeleteDone: PropTypes.func.isRequired
 };
 

@@ -43,7 +43,7 @@ const Locations = () => {
 				<List>
 					{
 						locations.map(location => (
-							<LocationItem key={location._id} location={location} onClick={() => setSelectedLocation(location)} onDeleteDone={getLocationsFromServer}/>
+							<LocationItem key={location._id} location={location} onClick={() => {}} onEdit={() => setSelectedLocation(location)} onDeleteDone={getLocationsFromServer}/>
 						))
 					}
 				</List>
