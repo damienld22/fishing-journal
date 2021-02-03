@@ -16,6 +16,7 @@ const ReferencesPage = lazy(() => import('./components/references/References'));
 const LoginPage = lazy(() => import('./components/authentification/Login'));
 const SignUpPage = lazy(() => import('./components/authentification/SignUp'));
 const DisplayFish = lazy(() => import('./pages/DisplayFish/DisplayFish'));
+const DisplayLocation = lazy(() => import('./pages/DisplayLocation/DisplayLocation'));
 
 moment.locale('fr', localization);
 
@@ -51,6 +52,7 @@ const App = () => {
 								<PrivateRoute exact path="/fishes" component={FishesPage}/>
 								<PrivateRoute exact path="/fishes/display" component={DisplayFish}/>
 								<PrivateRoute exact path="/locations" component={LocationsPage}/>
+								<PrivateRoute exact path="/locations/display" component={DisplayLocation}/>
 								<PrivateRoute exact path="/sessions" component={SessionsPage}/>
 								<PrivateRoute exact path="/sessions/:id" component={DisplaySession}/>
 								<PrivateRoute exact path="/list" component={ListPage}/>

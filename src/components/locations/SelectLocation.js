@@ -2,11 +2,7 @@ import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import ReactMapGL, {Marker} from 'react-map-gl';
 import styles from '../components.module.css';
-
-const token = 'pk.eyJ1IjoiZGFtaWVubGQiLCJhIjoiY2tmbjBncHB4MDZrMDJybXA0cGkwa3cyMCJ9.8BF21fxwSd0lZ_qXptND_Q';
-const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
-  c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
-	C20.1,15.8,20.2,15.8,20.2,15.7z`;
+import {TOKEN_REACT_MAPGL, ICON_REACT_MAPGL} from '../../config';
 
 const SelectLocation = ({location, onSelectLocation}) => {
 	const [currentLocation, setCurrentLocation] = useState({
@@ -32,7 +28,7 @@ const SelectLocation = ({location, onSelectLocation}) => {
 	return (
 		<div className={styles.containerCard}>
 			<ReactMapGL
-				mapboxApiAccessToken={token}
+				mapboxApiAccessToken={TOKEN_REACT_MAPGL}
 				zoom={zoom}
 				latitude={currentLocation.latitude}
 				longitude={currentLocation.longitude}
@@ -57,7 +53,7 @@ const SelectLocation = ({location, onSelectLocation}) => {
 								transform: `translate(${-20 / 2}px,${-20}px)`
 							}}
 						>
-							<path d={ICON}/>
+							<path d={ICON_REACT_MAPGL}/>
 						</svg>
 					</Marker>
 				)}

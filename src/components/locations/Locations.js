@@ -8,8 +8,10 @@ import Snackbar from '../Snackbar';
 import LocationItem from './LocationItem';
 import {List, CircularProgress} from '@material-ui/core';
 import styles from '../components.module.css';
+import {useHistory} from 'react-router-dom';
 
 const Locations = () => {
+	const history = useHistory();
 	const [createLocationModalIsOpen, setCreateLocationModalIsOpen] = useState(false);
 	const [locations, setLocations] = useState([]);
 	const [selectedLocation, setSelectedLocation] = useState(null);
@@ -43,7 +45,7 @@ const Locations = () => {
 				<List>
 					{
 						locations.map(location => (
-							<LocationItem key={location._id} location={location} onClick={() => {}} onEdit={() => setSelectedLocation(location)} onDeleteDone={getLocationsFromServer}/>
+							<LocationItem key={location._id} location={location} onClick={() => history.push('/locations/display', {location})} onEdit={() => setSelectedLocation(location)} onDeleteDone={getLocationsFromServer}/>
 						))
 					}
 				</List>

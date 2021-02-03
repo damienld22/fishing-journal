@@ -29,7 +29,6 @@ const SelectPicture = ({onSelectPicture, picture}) => {
 				</label>
 			</div>
 
-			{/* { picture && <FullScreenPicture alt="Current catch" src={join(API_URL, picture)} height={100}/>} */}
 			{ picture && <FullScreenPicture alt="Current catch" src={toDisplayPicture} height={100}/>}
 		</div>
 	);

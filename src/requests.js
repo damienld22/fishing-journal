@@ -1,7 +1,6 @@
 import axios from 'axios';
 import urljoin from 'url-join';
-
-export const API_URL = 'https://241.ip-92-222-68.eu';
+import {API_URL} from './config';
 
 /**
  * ======================================
