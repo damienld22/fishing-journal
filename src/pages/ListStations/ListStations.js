@@ -7,6 +7,7 @@ import './ListStations.scss';
 import CreateStationModal from '../../components/stations/CreateStationModal';
 import {getStationsByLocation} from '../../requests';
 import StationItem from '../../components/stations/StationItem';
+import EditStationModal from '../../components/stations/EditStationModal';
 
 const ListStations = () => {
 	const {location} = useParams();
@@ -64,7 +65,7 @@ const ListStations = () => {
 			{ displayProgress && <CircularProgress className="progress"/>}
 			<CreateStationModal isOpen={createStationModalIsOpen} setState={setCreateStationModal} location={location}/>
 			<Snackbar isOpen={Boolean(messageSnackbar)} setState={setMessageSnackbar} message={messageSnackbar}/>
-			{/* {selectedStation && <EditStationModal selectedStation={selectedStation} setSelectedStation={setSelectedStation}/>} */}
+			{selectedStation && <EditStationModal selectedStation={selectedStation} setSelectedStation={setSelectedStation}/>}
 		</div>
 	);
 };
