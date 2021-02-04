@@ -47,7 +47,8 @@
   // Internal screen orientation variables
   var hasScreenOrientationAPI = window.screen && window.screen.orientation && window.screen.orientation.angle !== undefined && window.screen.orientation.angle !== null ? true : false;
   var screenOrientationAngle = ( hasScreenOrientationAPI ? window.screen.orientation.angle : ( window.orientation || 0 ) ) * degToRad;
-  
+
+  // eslint-disable-next-line
   var SCREEN_ROTATION_0        = 0,
       SCREEN_ROTATION_90       = M_PI_2,
       SCREEN_ROTATION_180      = M_PI,
@@ -206,7 +207,8 @@
   ////// FULLTILT.Quaternion //////
   
   FULLTILT.Quaternion = function ( x, y, z, w ) {
-  
+
+    // eslint-disable-next-line
     var quat, outQuat;
   
     this.set = function ( x, y, z, w ) {
@@ -903,6 +905,7 @@
     rotateByAxisAngle: function () {
   
       var _matrix = new FULLTILT.RotationMatrix();
+      // eslint-disable-next-line
       var outEuler;
   
       return function ( targetEuler, axis, angle ) {
@@ -993,7 +996,8 @@
     constructor: FULLTILT.DeviceOrientation,
   
     start: function ( callback ) {
-  
+
+      // eslint-disable-next-line
       if ( callback && Object.prototype.toString.call( callback ) == '[object Function]' ) {
   
         sensors.orientation.callbacks.push( callback );
@@ -1225,7 +1229,8 @@
     constructor: FULLTILT.DeviceMotion,
   
     start: function ( callback ) {
-  
+
+      // eslint-disable-next-line
       if ( callback && Object.prototype.toString.call( callback ) == '[object Function]' ) {
   
         sensors.motion.callbacks.push( callback );
