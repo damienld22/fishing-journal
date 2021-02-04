@@ -30,7 +30,7 @@ const FullScreenPicture = ({src, alt, height}) => {
 							<IconButton style={{position: 'absolute', top: '20px', right: '20px'}} onClick={closeModal}>
 								<CloseIcon/>
 							</IconButton>
-							<img alt={alt} src={src} style={{width: '100%', height: '100%', objectFit: 'contain'}}/>
+							{src && <img alt={alt} src={src} style={{width: '100%', height: '100%', objectFit: 'contain'}}/>}
 						</div>
 					</Dialog>
 			}
@@ -39,7 +39,7 @@ const FullScreenPicture = ({src, alt, height}) => {
 };
 
 FullScreenPicture.propTypes = {
-	src: PropTypes.string.isRequired,
+	src: PropTypes.string,
 	alt: PropTypes.string.isRequired,
 	height: PropTypes.number.isRequired
 };

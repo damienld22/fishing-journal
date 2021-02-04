@@ -36,7 +36,7 @@ const SelectPicture = ({onSelectPicture, picture}) => {
 
 SelectPicture.propTypes = {
 	onSelectPicture: PropTypes.func.isRequired,
-	picture: PropTypes.string
+	picture: PropTypes.object
 };
 
 export default SelectPicture;

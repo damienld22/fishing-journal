@@ -5,26 +5,27 @@ import {createStation} from '../../requests';
 import SelectPicture from '../shared/SelectPicture';
 import SelectNumber from './SelectNumber';
 import SelectOrientation from './SelectOrientation';
+import SelectDescription from '../shared/SelectDescription';
 
 const CreateStationModal = ({isOpen, setState, location}) => {
 	const [step, setStep] = useState(0);
 	const [picture, setPicture] = useState(null);
+	const [description, setDescription] = useState(null);
 	const [distance, setDistance] = useState(null);
 	const [depth, setDepth] = useState(null);
 	const [orientation, setOrientation] = useState(null);
 	const [messageSnackbar, setMessageSnackbar] = useState('');
 	const [displayProgress, setDisplayProgress] = useState(false);
 
-	console.log('Location :', location);
-
 	const onValidate = () => {
 		setDisplayProgress(true);
-		createStation({distance, depth, orientation}, picture)
+		createStation({distance, depth, orientation, description, location}, picture)
 			.then(() => {
 				setDisplayProgress(false);
 				setStep(0);
 				setPicture(null);
 				setDistance(null);
+				setDescription(null);
 				setDepth(null);
 				setOrientation(null);
 				setState(false);
@@ -41,16 +42,17 @@ const CreateStationModal = ({isOpen, setState, location}) => {
 
 			<div style={{height: '50vh'}}>
 				{ step === 0 && <SelectPicture picture={picture} onSelectPicture={setPicture}/>}
-				{ step === 1 && <SelectNumber title="Distance" value={distance} onSelectValue={setDistance}/>}
-				{ step === 2 && <SelectNumber title="Profondeur" value={depth} onSelectValue={setDepth}/>}
-				{ step === 3 && <SelectOrientation value={orientation} onSelectValue={setOrientation}/>}
+				{ step === 1 && <SelectDescription description={description} onSelectDescription={setDescription}/>}
+				{ step === 2 && <SelectNumber title="Distance" value={distance} onSelectValue={setDistance}/>}
+				{ step === 3 && <SelectNumber title="Profondeur" value={depth} onSelectValue={setDepth}/>}
+				{ step === 4 && <SelectOrientation value={orientation} onSelectValue={setOrientation}/>}
 			</div>
 
 			<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-				<MobileStepper variant="dots" steps={4} position="static" activeStep={step}/>
+				<MobileStepper variant="dots" steps={5} position="static" activeStep={step}/>
 				<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingBottom: '10px'}}>
 					{ step === 0 ? <Button style={{width: '40vw'}} onClick={() => setState(false)}>Annuler</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step - 1)}>Précédent</Button>}
-					{ step === 3 ? <Button style={{width: '40vw'}} onClick={onValidate}>Confirmer</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step + 1)}>Suivant</Button>}
+					{ step === 4 ? <Button style={{width: '40vw'}} onClick={onValidate}>Confirmer</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step + 1)}>Suivant</Button>}
 				</div>
 			</div>
 
@@ -67,3 +69,4 @@ CreateStationModal.propTypes = {
 };
 
 export default CreateStationModal;
+
