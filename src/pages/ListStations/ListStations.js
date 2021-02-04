@@ -52,7 +52,7 @@ const ListStations = () => {
 				<List>
 					{
 						stations.map(station => (
-							<StationItem key={station._id} station={station} onClick={() => history.push('/stations/display', {station})} onEdit={() => setSelectedStation(station)} onDeleteDone={getStationsFromServer}/>
+							<StationItem key={station._id} station={station} onClick={() => history.push('/station/display', {station})} onEdit={() => setSelectedStation(station)} onDeleteDone={getStationsFromServer}/>
 						))
 					}
 				</List>

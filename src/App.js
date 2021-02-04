@@ -6,6 +6,7 @@ import moment from 'moment';
 import localization from 'moment/locale/fr';
 import {StylesProvider} from '@material-ui/core/styles';
 import Snackbar from './components/Snackbar';
+import DisplayStation from './pages/DisplayStation/DisplayStation';
 const FishesPage = lazy(() => import('./components/fishes/Fishes'));
 const LocationsPage = lazy(() => import('./components/locations/Locations'));
 const SessionsPage = lazy(() => import('./components/sessions/Sessions'));
@@ -59,6 +60,7 @@ const App = () => {
 								<PrivateRoute exact path="/list" component={ListPage}/>
 								<PrivateRoute exact path="/references" component={ReferencesPage}/>
 								<PrivateRoute exact path="/stations/:location" component={ListStations}/>
+								<PrivateRoute exact path="/station/display" component={DisplayStation}/>
 								<Route exact path="/login">
 									<LoginPage onConnection={() => setConnected(true)} onLogout={() => setConnected(false)}/>
 								</Route>
