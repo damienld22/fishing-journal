@@ -29,7 +29,7 @@ const SelectPicture = ({onSelectPicture, picture}) => {
 				</label>
 			</div>
 
-			{ picture && <FullScreenPicture alt="Current catch" src={toDisplayPicture} height={100}/>}
+			{ picture && <FullScreenPicture alt="current" src={toDisplayPicture} height={100}/>}
 		</div>
 	);
 };

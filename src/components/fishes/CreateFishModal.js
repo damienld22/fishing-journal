@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Dialog, DialogTitle, Button, CircularProgress, MobileStepper} from '@material-ui/core';
 import moment from 'moment';
-import SelectPicture from './SelectPicture';
+import SelectPicture from '../shared/SelectPicture';
 import SelectWeight from './SelectWeight';
 import SelectDate from './SelectDate';
 import SelectBait from './SelectBait';

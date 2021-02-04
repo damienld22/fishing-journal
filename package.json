@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
+    "gyronorm": "^2.0.6",
     "moment": "^2.28.0",
     "node-sass": "^4.0.0",
     "react": "^16.13.1",
@@ -64,7 +65,9 @@
       "react/jsx-no-useless-fragment": "off"
     },
     "ignores": [
-      "./src/serviceWorker.js"
+      "./src/serviceWorker.js",
+      "./src/fulltilt.js",
+      "./src/index.js"
     ]
   }
 }
