@@ -18,3 +18,16 @@
   background-color: blue;
   color: white;
 }
+
+.progress {
+  position: absolute;
+  left: calc(50% - 20px);
+  top: 50%;
+}
+
+.scrollList {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  padding-bottom: 100px;
+}
