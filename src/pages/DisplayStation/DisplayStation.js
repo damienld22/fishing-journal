@@ -19,6 +19,8 @@ const DisplayStation = ({location}) => {
 			</div>
 
 			<div style={{margin: '20px'}}>
+				{station.name && <h1>{station.name}</h1>}
+
 				{ station.picture && (
 					<FullScreenPicture alt="station" height={200} src={station.picture}/>
 				)}

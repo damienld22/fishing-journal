@@ -3,30 +3,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../components.module.css';
 
-const SelectDescription = ({description, onSelectDescription}) => {
+const SelectTextInput = ({value, onSelectValue, title}) => {
 	return (
 		<div className={styles.containerSelector}>
-			<p className={styles.titleSelector}>Description</p>
+			<p className={styles.titleSelector}>{title}</p>
 
 			<TextField
 				multiline
 				className={styles.inputSelector}
-				label="Description"
+				label={title}
 				type="text"
 				variant="outlined"
-				value={description || ''}
+				value={value || ''}
 				InputLabelProps={{
 					shrink: true
 				}}
-				onChange={event => onSelectDescription(event.target.value)}
+				onChange={event => onSelectValue(event.target.value)}
 			/>
 		</div>
 	);
 };
 
-SelectDescription.propTypes = {
-	onSelectDescription: PropTypes.func.isRequired,
-	description: PropTypes.string
+SelectTextInput.propTypes = {
+	onSelectValue: PropTypes.func.isRequired,
+	value: PropTypes.string,
+	title: PropTypes.string.isRequired
 };
 
-export default SelectDescription;
+export default SelectTextInput;

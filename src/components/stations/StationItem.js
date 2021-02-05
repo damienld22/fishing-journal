@@ -38,8 +38,7 @@ const StationItem = ({station, onClick, onDeleteDone, onEdit}) => {
 				<CardContent className={styles.cardContent}>
 					{station.picture ? <FullScreenPicture alt="station" height={50} src={station.picture}/> : <p>/</p>}
 					<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: '0.8em'}}>
-						<p style={{margin: 0}}>{station.distance ? `distance : ${station.distance}m` : '/'}</p>
-						<p style={{margin: 0}}>{station.depth ? `profondeur : ${station.depth}m` : '/'}</p>
+						<p style={{margin: 0}}>{station.name || '/'}</p>
 					</div>
 
 					<div>

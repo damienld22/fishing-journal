@@ -5,11 +5,12 @@ import {updateStation} from '../../requests';
 import SelectPicture from '../shared/SelectPicture';
 import SelectNumber from './SelectNumber';
 import SelectOrientation from './SelectOrientation';
-import SelectDescription from '../shared/SelectDescription';
+import SelectTextInput from '../shared/SelectTextInput';
 
 const EditStationModal = ({selectedStation, setSelectedStation}) => {
 	const currentPicture = selectedStation.picture;
 	const [step, setStep] = useState(0);
+	const [name, setName] = useState(selectedStation.name);
 	const [picture, setPicture] = useState(selectedStation.picture);
 	const [description, setDescription] = useState(selectedStation.description);
 	const [distance, setDistance] = useState(selectedStation.distance);
@@ -22,11 +23,12 @@ const EditStationModal = ({selectedStation, setSelectedStation}) => {
 		setDisplayProgress(true);
 
 		const newPicture = currentPicture === picture ? null : picture;
-		updateStation(selectedStation._id, {distance, depth, orientation, description, location: selectedStation.location}, newPicture)
+		updateStation(selectedStation._id, {distance, depth, orientation, description, location: selectedStation.location, name}, newPicture)
 			.then(() => {
 				setDisplayProgress(false);
 				setStep(0);
 				setPicture(null);
+				setName(null);
 				setDistance(null);
 				setDescription(null);
 				setDepth(null);
@@ -45,14 +47,15 @@ const EditStationModal = ({selectedStation, setSelectedStation}) => {
 
 			<div style={{height: '50vh'}}>
 				{ step === 0 && <SelectPicture picture={picture} onSelectPicture={setPicture}/>}
-				{ step === 1 && <SelectDescription description={description} onSelectDescription={setDescription}/>}
-				{ step === 2 && <SelectNumber title="Distance" value={distance} onSelectValue={setDistance}/>}
-				{ step === 3 && <SelectNumber title="Profondeur" value={depth} onSelectValue={setDepth}/>}
-				{ step === 4 && <SelectOrientation value={orientation} onSelectValue={setOrientation}/>}
+				{ step === 1 && <SelectTextInput title="Nom" value={name} onSelectValue={setName}/>}
+				{ step === 2 && <SelectTextInput title="Description" value={description} onSelectValue={setDescription}/>}
+				{ step === 3 && <SelectNumber title="Distance" value={distance} onSelectValue={setDistance}/>}
+				{ step === 4 && <SelectNumber title="Profondeur" value={depth} onSelectValue={setDepth}/>}
+				{ step === 5 && <SelectOrientation value={orientation} onSelectValue={setOrientation}/>}
 			</div>
 
 			<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-				<MobileStepper variant="dots" steps={5} position="static" activeStep={step}/>
+				<MobileStepper variant="dots" steps={6} position="static" activeStep={step}/>
 				<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingBottom: '10px'}}>
 					{ step === 0 ? <Button style={{width: '40vw'}} onClick={() => setSelectedStation(null)}>Annuler</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step - 1)}>Précédent</Button>}
 					{ step === 4 ? <Button style={{width: '40vw'}} onClick={onValidate}>Confirmer</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step + 1)}>Suivant</Button>}
