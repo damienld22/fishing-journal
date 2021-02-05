@@ -10,6 +10,7 @@ import SelectPlace from './SelectPlace';
 import Snackbar from '../Snackbar';
 import {createFishCatch} from '../../requests';
 import styles from '../components.module.css';
+import FullScreenPicture from '../generics/FullScreenPicture';
 
 const CreateFishModal = ({isOpen, setState}) => {
 	const [step, setStep] = useState(0);
@@ -45,7 +46,7 @@ const CreateFishModal = ({isOpen, setState}) => {
 			<DialogTitle>Nouvelle prise</DialogTitle>
 
 			<div className={styles.content}>
-				{ step === 0 && <SelectPicture picture={picture} onSelectPicture={setPicture}/>}
+				{ step === 0 && <SelectPicture picture={picture} pictureContainer={FullScreenPicture} onSelectPicture={setPicture}/>}
 				{ step === 1 && <SelectWeight weight={weight} onSelectWeight={setWeight}/>}
 				{ step === 2 && <SelectDate date={date} onSelectDate={setDate}/>}
 				{ step === 3 && <SelectBait bait={bait} onSelectBait={setBait}/>}

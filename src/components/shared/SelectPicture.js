@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import PublishIcon from '@material-ui/icons/Publish';
 import PropTypes from 'prop-types';
-import FullScreenPicture from '../generics/FullScreenPicture';
 import styles from '../components.module.css';
 
-const SelectPicture = ({onSelectPicture, picture}) => {
+const SelectPicture = ({onSelectPicture, picture, pictureContainer: PictureContainer}) => {
 	const [toDisplayPicture, setToDisplayPicture] = useState(picture);
 
 	const handleCapture = ({target}) => {
@@ -29,14 +28,15 @@ const SelectPicture = ({onSelectPicture, picture}) => {
 				</label>
 			</div>
 
-			{ picture && <FullScreenPicture alt="current" src={toDisplayPicture} height={100}/>}
+			{ picture && <PictureContainer alt="current" src={toDisplayPicture} height={100}/>}
 		</div>
 	);
 };
 
 SelectPicture.propTypes = {
 	onSelectPicture: PropTypes.func.isRequired,
-	picture: PropTypes.object
+	picture: PropTypes.object,
+	pictureContainer: PropTypes.func
 };
 
 export default SelectPicture;

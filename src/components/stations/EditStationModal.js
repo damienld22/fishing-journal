@@ -6,6 +6,7 @@ import SelectPicture from '../shared/SelectPicture';
 import SelectNumber from './SelectNumber';
 import SelectOrientation from './SelectOrientation';
 import SelectTextInput from '../shared/SelectTextInput';
+import FullScreenPictureWithMarker from './FullScreenPictureWithMarker';
 
 const EditStationModal = ({selectedStation, setSelectedStation}) => {
 	const currentPicture = selectedStation.picture;
@@ -46,7 +47,7 @@ const EditStationModal = ({selectedStation, setSelectedStation}) => {
 			<DialogTitle>Édition du poste</DialogTitle>
 
 			<div style={{height: '50vh'}}>
-				{ step === 0 && <SelectPicture picture={picture} onSelectPicture={setPicture}/>}
+				{ step === 0 && <SelectPicture picture={picture} pictureContainer={FullScreenPictureWithMarker} onSelectPicture={setPicture}/>}
 				{ step === 1 && <SelectTextInput title="Nom" value={name} onSelectValue={setName}/>}
 				{ step === 2 && <SelectTextInput title="Description" value={description} onSelectValue={setDescription}/>}
 				{ step === 3 && <SelectNumber title="Distance" value={distance} onSelectValue={setDistance}/>}

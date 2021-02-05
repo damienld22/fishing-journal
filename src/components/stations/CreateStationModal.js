@@ -6,12 +6,14 @@ import SelectPicture from '../shared/SelectPicture';
 import SelectNumber from './SelectNumber';
 import SelectOrientation from './SelectOrientation';
 import SelectTextInput from '../shared/SelectTextInput';
+import FullScreenPictureWithMarker from './FullScreenPictureWithMarker';
 
 const CreateStationModal = ({isOpen, setState, location}) => {
 	const [step, setStep] = useState(0);
 	const [name, setName] = useState(null);
 	const [picture, setPicture] = useState(null);
 	const [description, setDescription] = useState(null);
+	const [markers, setMarkers] = useState([]);
 	const [distance, setDistance] = useState(null);
 	const [depth, setDepth] = useState(null);
 	const [orientation, setOrientation] = useState(null);
@@ -20,7 +22,7 @@ const CreateStationModal = ({isOpen, setState, location}) => {
 
 	const onValidate = () => {
 		setDisplayProgress(true);
-		createStation({distance, depth, orientation, description, location, name}, picture)
+		createStation({distance, depth, orientation, description, location, name, markers}, picture)
 			.then(() => {
 				setDisplayProgress(false);
 				setStep(0);
@@ -30,6 +32,7 @@ const CreateStationModal = ({isOpen, setState, location}) => {
 				setDescription(null);
 				setDepth(null);
 				setOrientation(null);
+				setMarkers([]);
 				setState(false);
 			})
 			.catch(() => {
@@ -43,7 +46,7 @@ const CreateStationModal = ({isOpen, setState, location}) => {
 			<DialogTitle>Nouveau poste</DialogTitle>
 
 			<div style={{height: '50vh'}}>
-				{ step === 0 && <SelectPicture picture={picture} onSelectPicture={setPicture}/>}
+				{ step === 0 && <SelectPicture picture={picture} pictureContainer={props => <FullScreenPictureWithMarker {...props} markers={markers} onSelectMarkers={setMarkers}/>} onSelectPicture={setPicture}/>}
 				{ step === 1 && <SelectTextInput title="Nom" value={name} onSelectValue={setName}/>}
 				{ step === 2 && <SelectTextInput title="Description" value={description} onSelectValue={setDescription}/>}
 				{ step === 3 && <SelectNumber title="Distance" value={distance} onSelectValue={setDistance}/>}
