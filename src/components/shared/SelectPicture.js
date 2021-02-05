@@ -8,14 +8,44 @@ const SelectPicture = ({onSelectPicture, picture, pictureContainer: PictureConta
 	const [toDisplayPicture, setToDisplayPicture] = useState(picture);
 
 	const handleCapture = ({target}) => {
-		console.log('==> toto')
-		onSelectPicture('toto')
-		setToDisplayPicture('toto')
-		// onSelectPicture(target.files[0]);
+		onSelectPicture(target.files[0]);
 
-		// const fileReader = new FileReader();
-		// fileReader.readAsDataURL(target.files[0]);
-		// fileReader.addEventListener('load', event => setToDisplayPicture(event.target.result));
+		const fileReader = new FileReader();
+		fileReader.addEventListener('load', event => {
+			const image = new Image();
+			image.src = event.target.result;
+
+			image.addEventListener('load', function () {
+				const canvas = document.createElement('canvas');
+				let ctx = canvas.getContext('2d');
+				ctx.drawImage(this, 0, 0);
+
+				const MAX_WIDTH = 1000;
+				const MAX_HEIGHT = 1000;
+				let width = this.width;
+				let height = this.height;
+
+				if (width > height) {
+					if (width > MAX_WIDTH) {
+						height *= MAX_WIDTH / width;
+						width = MAX_WIDTH;
+					}
+				} else if (height > MAX_HEIGHT) {
+					width *= MAX_HEIGHT / height;
+					height = MAX_HEIGHT;
+				}
+
+				canvas.width = width;
+				canvas.height = height;
+
+				ctx = canvas.getContext('2d');
+				ctx.drawImage(this, 0, 0, width, height);
+
+				const dataurl = canvas.toDataURL(target.files[0].type);
+				setToDisplayPicture(dataurl);
+			});
+		});
+		fileReader.readAsDataURL(target.files[0]);
 	};
 
 	return (

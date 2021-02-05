@@ -57,14 +57,16 @@
       "navigator",
       "localStorage",
       "FormData",
-      "window"
+      "window",
+      "Image"
     ],
     "rules": {
       "import/extensions": "off",
       "unicorn/filename-case": "off",
       "react/no-unescaped-entities": "off",
       "import/no-unassigned-import": "off",
-      "react/jsx-no-useless-fragment": "off"
+      "react/jsx-no-useless-fragment": "off",
+      "react/no-this-in-sfc": "off"
     },
     "ignores": [
       "./src/serviceWorker.js",
