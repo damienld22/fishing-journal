@@ -8,11 +8,12 @@ const SelectPicture = ({onSelectPicture, picture, pictureContainer: PictureConta
 	const [toDisplayPicture, setToDisplayPicture] = useState(picture);
 
 	const handleCapture = ({target}) => {
-		onSelectPicture(target.files[0]);
+		console.log('==> toto')
+		// onSelectPicture(target.files[0]);
 
-		const fileReader = new FileReader();
-		fileReader.readAsDataURL(target.files[0]);
-		fileReader.addEventListener('load', event => setToDisplayPicture(event.target.result));
+		// const fileReader = new FileReader();
+		// fileReader.readAsDataURL(target.files[0]);
+		// fileReader.addEventListener('load', event => setToDisplayPicture(event.target.result));
 	};
 
 	return (
