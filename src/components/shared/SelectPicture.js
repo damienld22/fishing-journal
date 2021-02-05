@@ -9,6 +9,8 @@ const SelectPicture = ({onSelectPicture, picture, pictureContainer: PictureConta
 
 	const handleCapture = ({target}) => {
 		console.log('==> toto')
+		onSelectPicture('toto')
+		setToDisplayPicture('toto')
 		// onSelectPicture(target.files[0]);
 
 		// const fileReader = new FileReader();
