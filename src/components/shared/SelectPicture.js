@@ -20,8 +20,8 @@ const SelectPicture = ({onSelectPicture, picture, pictureContainer: PictureConta
 				let ctx = canvas.getContext('2d');
 				ctx.drawImage(this, 0, 0);
 
-				const MAX_WIDTH = 1000;
-				const MAX_HEIGHT = 1000;
+				const MAX_WIDTH = 500;
+				const MAX_HEIGHT = 500;
 				let width = this.width;
 				let height = this.height;
 
