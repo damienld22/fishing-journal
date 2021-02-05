@@ -7,6 +7,7 @@ import localization from 'moment/locale/fr';
 import {StylesProvider} from '@material-ui/core/styles';
 import Snackbar from './components/Snackbar';
 import DisplayStation from './pages/DisplayStation/DisplayStation';
+import DecisionHelpPage from './pages/DecisionHelp/DecisionHelp';
 const FishesPage = lazy(() => import('./components/fishes/Fishes'));
 const LocationsPage = lazy(() => import('./components/locations/Locations'));
 const SessionsPage = lazy(() => import('./components/sessions/Sessions'));
@@ -61,6 +62,7 @@ const App = () => {
 								<PrivateRoute exact path="/references" component={ReferencesPage}/>
 								<PrivateRoute exact path="/stations/:location" component={ListStations}/>
 								<PrivateRoute exact path="/station/display" component={DisplayStation}/>
+								<PrivateRoute exact path="/decisionHelp" component={DecisionHelpPage}/>
 								<Route exact path="/login">
 									<LoginPage onConnection={() => setConnected(true)} onLogout={() => setConnected(false)}/>
 								</Route>

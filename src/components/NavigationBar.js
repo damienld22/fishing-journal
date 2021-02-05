@@ -6,6 +6,7 @@ import FishingIcon from '@material-ui/icons/ThumbUp';
 import LocationIcon from '@material-ui/icons/LocationOn';
 import LogoutIcon from '@material-ui/icons/ExitToApp';
 import ListIcon from '@material-ui/icons/List';
+import HelpIcon from '@material-ui/icons/Help';
 import ReferencesIcon from '@material-ui/icons/AttachFile';
 import SessionIcon from '@material-ui/icons/Event';
 import NavigationItem from './NavigationItem';
@@ -93,6 +94,12 @@ const NavigationBar = ({isConnected, onLogout}) => {
 						Icon={ListIcon} text="Liste" onClick={() => {
 							setDrawerOpen(false);
 							history.push('/list');
+						}}/>
+
+					<NavigationItem
+						Icon={HelpIcon} text="Aide à la décision" onClick={() => {
+							setDrawerOpen(false);
+							history.push('/decisionHelp');
 						}}/>
 
 				</div>
