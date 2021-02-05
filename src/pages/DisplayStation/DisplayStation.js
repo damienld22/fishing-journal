@@ -4,7 +4,7 @@ import {IconButton} from '@material-ui/core';
 import BackIcon from '@material-ui/icons/ArrowBack';
 import {useHistory} from 'react-router-dom';
 import './DisplayStation.scss';
-import FullScreenPicture from '../../components/generics/FullScreenPicture';
+import FullScreenPictureWithMarker from '../../components/stations/FullScreenPictureWithMarker';
 
 const DisplayStation = ({location}) => {
 	const history = useHistory();
@@ -22,7 +22,7 @@ const DisplayStation = ({location}) => {
 				{station.name && <h1>{station.name}</h1>}
 
 				{ station.picture && (
-					<FullScreenPicture alt="station" height={200} src={station.picture}/>
+					<FullScreenPictureWithMarker alt="station" height={200} src={station.picture} markers={station.markers} onSelectMarkers={() => {}}/>
 				)}
 			</div>
 

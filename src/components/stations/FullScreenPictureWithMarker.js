@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import CloseIcon from '@material-ui/icons/Close';
 import {Button, Dialog, IconButton} from '@material-ui/core';
-import MarkerIcon from '@material-ui/icons/LocationOn';
+import MarkerIcon from '@material-ui/icons/GpsNotFixed';
 import ImageMarker from 'react-image-marker';
 
 const CustomMarker = () => <MarkerIcon color="error"/>;
@@ -27,17 +27,17 @@ const FullScreenPictureWithMarker = ({src, alt, height, markers, onSelectMarkers
 			{
 				fullScreen &&
 					<Dialog fullScreen open={fullScreen} onClose={closeModal}>
-						<div style={{height: '100vh'}}>
+						<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40px'}}>
 							<IconButton style={{zIndex: 99, position: 'absolute', top: '20px', right: '20px'}} onClick={closeModal}>
 								<CloseIcon/>
 							</IconButton>
 							{src && (
-								<div style={{height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-									<ImageMarker src={src} markers={currentMarkers} markerComponent={CustomMarker} onAddMarker={marker => setCurrentMarkers([marker])}/>
+								<div style={{height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '50%', transform: 'translateY(-50%)'}}>
+									<ImageMarker style={{maxWidth: '80vw'}} src={src} markers={currentMarkers} markerComponent={CustomMarker} onAddMarker={marker => setCurrentMarkers([marker])}/>
 								</div>
 							)}
 							<Button
-								color="primary" style={{position: 'absolute', bottom: '10%', left: '50%', transform: 'translateX(-50%)'}} onClick={() => {
+								color="primary" style={{marginTop: 100}} onClick={() => {
 									onSelectMarkers(currentMarkers);
 									setFullScreen(false);
 								}}

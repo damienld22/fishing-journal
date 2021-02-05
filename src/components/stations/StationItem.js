@@ -13,7 +13,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import {deleteStation} from '../../requests';
 import Snackbar from '../Snackbar';
 import styles from '../components.module.css';
-import FullScreenPicture from '../generics/FullScreenPicture';
+import FullScreenPictureWithMarker from './FullScreenPictureWithMarker';
 
 const StationItem = ({station, onClick, onDeleteDone, onEdit}) => {
 	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -36,7 +36,7 @@ const StationItem = ({station, onClick, onDeleteDone, onEdit}) => {
 		<>
 			<Card raised className={styles.card} onClick={onClick}>
 				<CardContent className={styles.cardContent}>
-					{station.picture ? <FullScreenPicture alt="station" height={50} src={station.picture}/> : <p>/</p>}
+					{station.picture ? <FullScreenPictureWithMarker alt="station" height={50} src={station.picture} markers={station.markers} onSelectMarkers={() => {}}/> : <p>/</p>}
 					<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: '0.8em'}}>
 						<p style={{margin: 0}}>{station.name || '/'}</p>
 					</div>

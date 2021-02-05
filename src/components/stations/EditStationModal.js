@@ -12,6 +12,7 @@ const EditStationModal = ({selectedStation, setSelectedStation}) => {
 	const currentPicture = selectedStation.picture;
 	const [step, setStep] = useState(0);
 	const [name, setName] = useState(selectedStation.name);
+	const [markers, setMarkers] = useState(selectedStation.markers);
 	const [picture, setPicture] = useState(selectedStation.picture);
 	const [description, setDescription] = useState(selectedStation.description);
 	const [distance, setDistance] = useState(selectedStation.distance);
@@ -24,7 +25,7 @@ const EditStationModal = ({selectedStation, setSelectedStation}) => {
 		setDisplayProgress(true);
 
 		const newPicture = currentPicture === picture ? null : picture;
-		updateStation(selectedStation._id, {distance, depth, orientation, description, location: selectedStation.location, name}, newPicture)
+		updateStation(selectedStation._id, {distance, depth, orientation, description, location: selectedStation.location, name, markers}, newPicture)
 			.then(() => {
 				setDisplayProgress(false);
 				setStep(0);
@@ -33,6 +34,7 @@ const EditStationModal = ({selectedStation, setSelectedStation}) => {
 				setDistance(null);
 				setDescription(null);
 				setDepth(null);
+				setMarkers([]);
 				setOrientation(null);
 				setSelectedStation(null);
 			})
@@ -47,7 +49,7 @@ const EditStationModal = ({selectedStation, setSelectedStation}) => {
 			<DialogTitle>Édition du poste</DialogTitle>
 
 			<div style={{height: '50vh'}}>
-				{ step === 0 && <SelectPicture picture={picture} pictureContainer={FullScreenPictureWithMarker} onSelectPicture={setPicture}/>}
+				{ step === 0 && <SelectPicture picture={picture} pictureContainer={props => <FullScreenPictureWithMarker {...props} markers={markers} onSelectMarkers={setMarkers}/>} onSelectPicture={setPicture}/>}
 				{ step === 1 && <SelectTextInput title="Nom" value={name} onSelectValue={setName}/>}
 				{ step === 2 && <SelectTextInput title="Description" value={description} onSelectValue={setDescription}/>}
 				{ step === 3 && <SelectNumber title="Distance" value={distance} onSelectValue={setDistance}/>}
@@ -59,7 +61,7 @@ const EditStationModal = ({selectedStation, setSelectedStation}) => {
 				<MobileStepper variant="dots" steps={6} position="static" activeStep={step}/>
 				<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingBottom: '10px'}}>
 					{ step === 0 ? <Button style={{width: '40vw'}} onClick={() => setSelectedStation(null)}>Annuler</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step - 1)}>Précédent</Button>}
-					{ step === 4 ? <Button style={{width: '40vw'}} onClick={onValidate}>Confirmer</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step + 1)}>Suivant</Button>}
+					{ step === 5 ? <Button style={{width: '40vw'}} onClick={onValidate}>Confirmer</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step + 1)}>Suivant</Button>}
 				</div>
 			</div>
 

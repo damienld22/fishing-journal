@@ -22,7 +22,7 @@ const FullScreenPicture = ({src, alt, height}) => {
 
 	return (
 		<>
-			<img alt={alt} src={src} height={height} onClick={onClick}/>
+			<img alt={alt} src={src} height={height} style={{maxWidth: '100%'}} onClick={onClick}/>
 			{
 				fullScreen &&
 					<Dialog fullScreen open={fullScreen} TransitionComponent={Transition} onClose={closeModal}>
