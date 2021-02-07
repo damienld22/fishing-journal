@@ -66,7 +66,8 @@
       "react/no-unescaped-entities": "off",
       "import/no-unassigned-import": "off",
       "react/jsx-no-useless-fragment": "off",
-      "react/no-this-in-sfc": "off"
+      "react/no-this-in-sfc": "off",
+      "react/no-array-index-key": "off"
     },
     "ignores": [
       "./src/serviceWorker.js",

@@ -244,6 +244,28 @@ export async function getList() {
 
 /**
  * ======================================
+ *  Decision help
+ * ======================================
+ */
+export async function updateDecisionHelp(decisionHelp) {
+	return axios.post(API_URL + '/decisionHelp', decisionHelp, {
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+}
+
+export async function getDecisionHelp() {
+	return axios.get(API_URL + '/decisionHelp', {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('access_token')}`
+		}
+	});
+}
+
+/**
+ * ======================================
  *  References
  * ======================================
  */
