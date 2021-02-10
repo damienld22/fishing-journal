@@ -7,6 +7,7 @@ import SelectNumber from './SelectNumber';
 import SelectOrientation from './SelectOrientation';
 import SelectTextInput from '../shared/SelectTextInput';
 import FullScreenPictureWithMarker from './FullScreenPictureWithMarker';
+import SelectLocation from '../locations/SelectLocation';
 
 const CreateStationModal = ({isOpen, setState, location}) => {
 	const [step, setStep] = useState(0);
@@ -17,12 +18,13 @@ const CreateStationModal = ({isOpen, setState, location}) => {
 	const [distance, setDistance] = useState(null);
 	const [depth, setDepth] = useState(null);
 	const [orientation, setOrientation] = useState(null);
+	const [throwingLocation, setThrowingLocation] = useState(null);
 	const [messageSnackbar, setMessageSnackbar] = useState('');
 	const [displayProgress, setDisplayProgress] = useState(false);
 
 	const onValidate = () => {
 		setDisplayProgress(true);
-		createStation({distance, depth, orientation, description, location, name, markers}, picture)
+		createStation({distance, depth, orientation, description, location, name, markers, throwingLocation}, picture)
 			.then(() => {
 				setDisplayProgress(false);
 				setStep(0);
@@ -32,6 +34,7 @@ const CreateStationModal = ({isOpen, setState, location}) => {
 				setDescription(null);
 				setDepth(null);
 				setOrientation(null);
+				setThrowingLocation(null);
 				setMarkers([]);
 				setState(false);
 			})
@@ -52,13 +55,14 @@ const CreateStationModal = ({isOpen, setState, location}) => {
 				{ step === 3 && <SelectNumber title="Distance" value={distance} onSelectValue={setDistance}/>}
 				{ step === 4 && <SelectNumber title="Profondeur" value={depth} onSelectValue={setDepth}/>}
 				{ step === 5 && <SelectOrientation value={orientation} onSelectValue={setOrientation}/>}
+				{ step === 6 && <SelectLocation location={throwingLocation} onSelectLocation={setThrowingLocation}/>}
 			</div>
 
 			<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-				<MobileStepper variant="dots" steps={6} position="static" activeStep={step}/>
+				<MobileStepper variant="dots" steps={7} position="static" activeStep={step}/>
 				<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingBottom: '10px'}}>
 					{ step === 0 ? <Button style={{width: '40vw'}} onClick={() => setState(false)}>Annuler</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step - 1)}>Précédent</Button>}
-					{ step === 5 ? <Button style={{width: '40vw'}} onClick={onValidate}>Confirmer</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step + 1)}>Suivant</Button>}
+					{ step === 6 ? <Button style={{width: '40vw'}} onClick={onValidate}>Confirmer</Button> : <Button style={{width: '40vw'}} onClick={() => setStep(step + 1)}>Suivant</Button>}
 				</div>
 			</div>
 

@@ -5,6 +5,7 @@ import BackIcon from '@material-ui/icons/ArrowBack';
 import {useHistory} from 'react-router-dom';
 import './DisplayStation.scss';
 import FullScreenPictureWithMarker from '../../components/stations/FullScreenPictureWithMarker';
+import DisplayLocationMarker from '../../components/locations/DisplayLocationMarker';
 
 const DisplayStation = ({location}) => {
 	const history = useHistory();
@@ -35,6 +36,12 @@ const DisplayStation = ({location}) => {
 					<p className="description">{station.description}</p>
 				)}
 			</ul>
+
+			{station.throwingLocation && (
+				<div className="locationMarker">
+					<DisplayLocationMarker location={station.throwingLocation}/>
+				</div>
+			)}
 		</div>
 	);
 };
