@@ -7,7 +7,7 @@ import ImageMarker from 'react-image-marker';
 
 const CustomMarker = () => <MarkerIcon color="error"/>;
 
-const FullScreenPictureWithMarker = ({src, alt, height, markers, onSelectMarkers}) => {
+const FullScreenPictureWithMarker = ({src, alt, height, markers, onSelectMarkers, isReadOnly = false}) => {
 	const [fullScreen, setFullScreen] = useState(false);
 	const [currentMarkers, setCurrentMarkers] = useState(markers);
 
@@ -19,6 +19,24 @@ const FullScreenPictureWithMarker = ({src, alt, height, markers, onSelectMarkers
 	const closeModal = evt => {
 		evt.stopPropagation();
 		setFullScreen(false);
+	};
+
+	const handleUpdateMarkers = newMarker => {
+		if (isReadOnly) {
+			return;
+		}
+
+		setCurrentMarkers(previous => {
+			if (previous.length === 0) {
+				return [newMarker];
+			}
+
+			if (previous.length === 1) {
+				return [...previous, newMarker];
+			}
+
+			return [previous[1], newMarker];
+		});
 	};
 
 	return (
@@ -33,16 +51,18 @@ const FullScreenPictureWithMarker = ({src, alt, height, markers, onSelectMarkers
 							</IconButton>
 							{src && (
 								<div style={{height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: '50%', transform: 'translateY(-50%)'}}>
-									<ImageMarker style={{maxWidth: '80vw'}} src={src} markers={currentMarkers} markerComponent={CustomMarker} onAddMarker={marker => setCurrentMarkers([marker])}/>
+									<ImageMarker style={{maxWidth: '80vw'}} src={src} markers={currentMarkers} markerComponent={CustomMarker} onAddMarker={handleUpdateMarkers}/>
 								</div>
 							)}
-							<Button
-								color="primary" style={{marginTop: 100}} onClick={() => {
-									onSelectMarkers(currentMarkers);
-									setFullScreen(false);
-								}}
-							>Valider
-							</Button>
+							{ !isReadOnly && (
+								<Button
+									color="primary" style={{position: 'static', bottom: 10}} onClick={() => {
+										onSelectMarkers(currentMarkers);
+										setFullScreen(false);
+									}}
+								>Valider
+								</Button>
+							)}
 						</div>
 					</Dialog>
 			}
@@ -55,7 +75,8 @@ FullScreenPictureWithMarker.propTypes = {
 	alt: PropTypes.string.isRequired,
 	height: PropTypes.number.isRequired,
 	markers: PropTypes.array.isRequired,
-	onSelectMarkers: PropTypes.func.isRequired
+	onSelectMarkers: PropTypes.func.isRequired,
+	isReadOnly: PropTypes.bool
 };
 
 export default FullScreenPictureWithMarker;

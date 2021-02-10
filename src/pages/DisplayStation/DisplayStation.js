@@ -23,7 +23,7 @@ const DisplayStation = ({location}) => {
 				{station.name && <h1>{station.name}</h1>}
 
 				{ station.picture && (
-					<FullScreenPictureWithMarker alt="station" height={200} src={station.picture} markers={station.markers} onSelectMarkers={() => {}}/>
+					<FullScreenPictureWithMarker isReadOnly alt="station" height={200} src={station.picture} markers={station.markers} onSelectMarkers={() => {}}/>
 				)}
 			</div>
 

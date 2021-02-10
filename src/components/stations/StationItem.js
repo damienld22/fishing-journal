@@ -36,7 +36,7 @@ const StationItem = ({station, onClick, onDeleteDone, onEdit}) => {
 		<>
 			<Card raised className={styles.card} onClick={onClick}>
 				<CardContent className={styles.cardContent}>
-					{station.picture ? <FullScreenPictureWithMarker alt="station" height={50} src={station.picture} markers={station.markers} onSelectMarkers={() => {}}/> : <p>/</p>}
+					{station.picture ? <FullScreenPictureWithMarker isReadOnly alt="station" height={50} src={station.picture} markers={station.markers} onSelectMarkers={() => {}}/> : <p>/</p>}
 					<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: '0.8em'}}>
 						<p style={{margin: 0}}>{station.name || '/'}</p>
 					</div>
